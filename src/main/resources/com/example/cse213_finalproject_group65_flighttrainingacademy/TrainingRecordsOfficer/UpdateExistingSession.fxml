@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.CertifiedExaminer.Cc"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.UpdateExistingSession"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>

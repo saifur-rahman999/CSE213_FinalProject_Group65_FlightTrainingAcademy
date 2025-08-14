@@ -7,7 +7,7 @@ module com.example.cse213_finalproject_group65_flighttrainingacademy {
     opens com.example.cse213_finalproject_group65_flighttrainingacademy to javafx.fxml;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.AircraftMaintenanceEngineer to javafx.fxml, javafx.base;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.AtcCoordinator to javafx.fxml, javafx.base;
-    opens com.example.cse213_finalproject_group65_flighttrainingacademy.CertifiedExaminer to javafx.fxml, javafx.base;
+    opens com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer to javafx.fxml, javafx.base;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer to javafx.fxml, javafx.base;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.FlightInstructor to javafx.fxml, javafx.base;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor to javafx.fxml, javafx.base;
