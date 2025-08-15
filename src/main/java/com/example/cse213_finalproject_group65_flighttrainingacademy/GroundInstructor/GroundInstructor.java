@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 public class GroundInstructor extends User {
 
-
-
     public GroundInstructor(String id, String name, String phoneNo, String email, String address, String gender, String password, LocalDate dob) {
         super(id, name, phoneNo, email, address, gender, password, dob);
     }

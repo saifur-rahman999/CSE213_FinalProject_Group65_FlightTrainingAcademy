@@ -1,10 +1,14 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot;
 
+<<<<<<< Updated upstream
 import com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.Model.ScheduleEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+=======
+import javafx.event.ActionEvent;
+>>>>>>> Stashed changes
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
