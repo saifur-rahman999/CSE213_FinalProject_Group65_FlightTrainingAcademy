@@ -19,11 +19,11 @@
     <!-- Main Button Panel -->
     <VBox spacing="15" layoutX="20.0" layoutY="60.0">
         <children>
-            <Button fx:id="viewScheduleButton" text="My Schedule" onAction="#" prefWidth="200.0"/>
+            <Button fx:id="viewScheduleButton" text="My Schedule" onAction="#onViewScheduleClick" prefWidth="200.0"/>
             <Button fx:id="bookSessionButton" text="Book Session" onAction="#onBookSessionClick" prefWidth="200.0"/>
             <Button fx:id="joinGroundSchoolButton" text="Join Ground School" onAction="#onJoinGroundSchoolClick" prefWidth="200.0"/>
             <Button fx:id="resourcesButton" text="Resources" onAction="#onResourcesClick" prefWidth="200.0"/>
-            <Button fx:id="takeExamButton" text="Exams & Quizzes" onAction="#onTakeExamClick" prefWidth="200.0"/>
+            <Button fx:id="takeExamButton" text="Exams &amp; Quizzes" onAction="#onTakeExamClick" prefWidth="200.0"/>
             <Button fx:id="viewGradesButton" text="Performance Log" onAction="#onViewGradesClick" prefWidth="200.0"/>
             <Button fx:id="trackProgressButton" text="Progress Tracker" onAction="#onTrackProgressClick" prefWidth="200.0"/>
             <Button fx:id="requestRescheduleButton" text="Request Reschedule" onAction="#onRequestRescheduleClick" prefWidth="200.0"/>
