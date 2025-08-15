@@ -6,9 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-=======
+
 import javafx.event.ActionEvent;
->>>>>>> Stashed changes
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
