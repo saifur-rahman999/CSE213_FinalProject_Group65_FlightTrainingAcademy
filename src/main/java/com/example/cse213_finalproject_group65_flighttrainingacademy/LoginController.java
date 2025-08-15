@@ -30,116 +30,90 @@ public class LoginController
     @javafx.fxml.FXML
     public void loginButtonOnAction(ActionEvent actionEvent) {
         String id, password, userType;
-        boolean flag = true;
-        Alert erroralert= new Alert(Alert.AlertType.ERROR) ;
 
         id = userIdTextField.getText();
         password = passwordField.getText();
         userType = userTypeComboBox.getValue();
 
         if (id.isBlank()) {
-            flag = false;
-            erroralert.setTitle("User ID Error");
-            erroralert.setContentText("User ID can not be blank.");
-            erroralert.showAndWait();
+            messageTextArea.setText("User ID can not be blank.");
+            return;
         }
 
-        if (password.isBlank()) {
-            flag = false;
-            erroralert.setTitle("Password Error");
-            erroralert.setContentText("Password can not be blank.");
-            erroralert.showAndWait();
+        else if (password.isBlank()) {
+            messageTextArea.setText("Password can not be blank.");
+            return;
         }
 
-        if (userType.isEmpty()) {
-            flag = false;
-            erroralert.setTitle("UserType Error");
-            erroralert.setContentText("Usertype must be selected.");
-            erroralert.showAndWait();
+        else if (userType == null) {
+            messageTextArea.setText("User Type must be selected.");
+            return;
         }
 
-        //vr
-
-
-        if (userType.equals("Aircraft Maintenance Engineer")) {
-            if (id.equals("0001") && password.equals("engineer")){
-                System.out.print("gg");
+        else {
+            if (userType.equals("Aircraft Maintenance Engineer")) {
+                if (id.equals("0001") && password.equals("engineer")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Aircraft Maintenance Engineer.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Ground Instructor.");
-            }
-        }
-
-        if (userType.equals("ATC Coordinator")) {
-            if (id.equals("0002") && password.equals("atc")){
-                System.out.print("gg");
+            else if (userType.equals("ATC Coordinator")) {
+                if (id.equals("0002") && password.equals("atc")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for ATC Coordinator.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for ATC Coordinator.");
-            }
-        }
-
-        if (userType.equals("Finance and Enrollment Officer")) {
-            if (id.equals("0003") && password.equals("feo")){
-                System.out.print("gg");
+            else if (userType.equals("Finance and Enrollment Officer")) {
+                if (id.equals("0003") && password.equals("feo")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Finance and Enrollment Officer.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Finance and Enrollment Officer.");
-            }
-        }
-
-        if (userType.equals("Flight Instructor")) {
-            if (id.equals("0004") && password.equals("finstructor")){
-                System.out.print("gg");
+            else if (userType.equals("Flight Instructor")) {
+                if (id.equals("0004") && password.equals("finstructor")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Flight Instructor.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Flight Instructor.");
-            }
-        }
-
-        if (userType.equals("Ground Instructor")) {
-            if (id.equals("0005") && password.equals("ginstructor")){
-                System.out.print("gg");
+            else if (userType.equals("Ground Instructor")) {
+                if (id.equals("0005") && password.equals("ginstructor")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Ground Instructor.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Ground Instructor");
-            }
-        }
-
-        if (userType.equals("Operation Manager")) {
-            if (id.equals("0006") && password.equals("manager")){
-                System.out.print("gg");
+            else if (userType.equals("Operation Manager")) {
+                if (id.equals("0006") && password.equals("manager")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Operation Manager.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Operation Manager.");
-            }
-        }
-
-        if (userType.equals("Trainee Pilot")) {
-            if (id.equals("0007") && password.equals("pilot")){
-                System.out.print("gg");
+            else if (userType.equals("Trainee Pilot")) {
+                if (id.equals("0007") && password.equals("pilot")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Trainee Pilot.");
+                }
             }
 
-            else {
-                System.out.print("Wrong User ID or Password for Trainee Pilot.");
+            else if (userType.equals("Training Records Officer")) {
+                if (id.equals("0008") && password.equals("tro")) {
+                    System.out.print("gg");
+                } else {
+                    messageTextArea.setText("Wrong User ID or Password for Training Records Officer.");
+                }
             }
         }
-
-        if (userType.equals("Training Records Officer")) {
-            if (id.equals("0008") && password.equals("tro")){
-                System.out.print("gg");
-            }
-
-            else {
-                messageTextArea.setText("Wrong User ID or Password for Training Records Officer");
-            }
-        }
-
     }
 }
