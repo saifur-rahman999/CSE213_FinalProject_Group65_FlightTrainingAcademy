@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.AddSession"
-            prefHeight="400.0" prefWidth="600.0">
+            prefWidth="560.0" prefHeight="420.0">
+    <top>
+        <Label text="New Training Session" style="-fx-font-size:16px; -fx-font-weight:bold; -fx-padding:10 12;"/>
+    </top>
 
-</AnchorPane>
+    <center>
+        <GridPane hgap="10" vgap="10">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <columnConstraints>
+                <ColumnConstraints percentWidth="35"/>
+                <ColumnConstraints percentWidth="65"/>
+            </columnConstraints>
+
+            <children>
+                <Label text="Date:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="datePicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="typeCombo" promptText="FLIGHT / SIM" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Aircraft/Device:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="aircraftCombo" promptText="Select" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Duration (hrs):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="durationField" promptText="e.g., 1.5" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Trainee:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="traineeCombo" promptText="Select trainee" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Instructor:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="instructorCombo" promptText="Select instructor" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <Label text="Remarks:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <TextArea fx:id="remarksArea" prefRowCount="3" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="8" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT" style="-fx-padding:8 12;">
+            <children>
+                <Label fx:id="errorLabel" style="-fx-text-fill: red;" HBox.hgrow="ALWAYS"/>
+                <Button text="Cancel" onAction="#onCancel"/>
+                <Button text="Save" onAction="#onSave" defaultButton="true"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
