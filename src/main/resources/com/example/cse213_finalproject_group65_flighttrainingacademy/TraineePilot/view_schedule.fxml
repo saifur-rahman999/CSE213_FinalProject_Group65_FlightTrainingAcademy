@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.ViewSchedule">
+    <children>
+        <TableView fx:id="tableView" layoutX="37.0" layoutY="80.0" prefHeight="200.0" prefWidth="557.0">
+            <columns>
+                <TableColumn fx:id="sessionidco" prefWidth="67.19998168945312" text="Session ID" />
+                <TableColumn fx:id="flightDateCo" prefWidth="72.00007629394531" text="Flight Date" />
+                <TableColumn fx:id="flightTimeCo" prefWidth="70.4000244140625" text="Flight Time" />
+                <TableColumn fx:id="sessionTypeCo" prefWidth="80.79998779296875" text="Session Type" />
+                <TableColumn fx:id="trauneeIDco" prefWidth="101.60003662109375" text="Trainee/Batch ID" />
+                <TableColumn fx:id="aircraftTypeCo" prefWidth="80.79998779296875" text="Aircraft Type" />
+                <TableColumn fx:id="trainingLocCo" prefWidth="80.79998779296875" text="Training Location" />
+            </columns>
+        </TableView>
+        <Button layoutX="361.0" layoutY="319.0" mnemonicParsing="false" onAction="#refreshOnClick" text="Refresh" />
+    </children>
+</AnchorPane>

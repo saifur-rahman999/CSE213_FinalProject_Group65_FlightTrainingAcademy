@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="770.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.ProgressTracker">
+    <children>
+        <Label fx:id="flightHrsLabel" layoutX="81.0" layoutY="29.0" prefHeight="18.0" prefWidth="200.0" text="Flight Hrs" />
+        <Label fx:id="AttendanceLabel" layoutX="81.0" layoutY="82.0" prefHeight="18.0" prefWidth="200.0" text="Attendance" />
+        <TableView fx:id="moduleProgressTableView" layoutX="14.0" layoutY="160.0" prefHeight="200.0" prefWidth="334.0">
+            <columns>
+                <TableColumn fx:id="moduleNameCo" prefWidth="85.59997367858887" text="Module Name" />
+                <TableColumn fx:id="statusCo" prefWidth="64.8000259399414" text="Status" />
+                <TableColumn fx:id="gradeCo" prefWidth="75.0" text="Grade" />
+                <TableColumn fx:id="lastUpdatedCo" prefWidth="102.4000244140625" text="Last Updated" />
+            </columns>
+        </TableView>
+        <BarChart fx:id="flightHoursBarChart" layoutX="356.0" layoutY="38.0" prefHeight="339.0" prefWidth="500.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </BarChart>
+        <PieChart fx:id="attendancePieChart" layoutX="414.0" layoutY="425.0" prefHeight="278.0" prefWidth="344.0" />
+        <ListView fx:id="moduleChecklistListView" layoutX="81.0" layoutY="434.0" prefHeight="278.0" prefWidth="200.0" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.JoinGroundSchool">
+    <children>
+        <TableView fx:id="groundSchoolTableView" layoutX="27.0" layoutY="56.0" prefHeight="200.0" prefWidth="304.0">
+            <columns>
+                <TableColumn fx:id="topicCo" prefWidth="75.0" text="Topic" />
+                <TableColumn fx:id="dateCo" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="platformCo" prefWidth="75.0" text="Platform" />
+                <TableColumn fx:id="instructorCo" prefWidth="75.0" text="Instructor" />
+            </columns>
+        </TableView>
+        <Button layoutX="305.0" layoutY="291.0" mnemonicParsing="false" onAction="#JoinOnTime" text="Join" />
+        <Label fx:id="joinStatusLabel" layoutX="396.0" layoutY="148.0" prefHeight="158.0" prefWidth="196.0" text="Join Status" />
+    </children>
+</AnchorPane>

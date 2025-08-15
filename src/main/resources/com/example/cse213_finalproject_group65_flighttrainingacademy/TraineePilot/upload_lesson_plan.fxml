@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.UploadLessonPlan">
+    <children>
+        <ComboBox fx:id="sessionIDDropDown" layoutX="101.0" layoutY="22.0" prefWidth="150.0" />
+        <Label layoutX="39.0" layoutY="26.0" text="Session ID" />
+        <Label fx:id="selectedFileLabel" layoutX="39.0" layoutY="101.0" prefHeight="18.0" prefWidth="199.0" text="Label" />
+        <Button layoutX="87.0" layoutY="64.0" mnemonicParsing="false" onAction="#chooseFileButton" text="File" />
+        <TextArea fx:id="descriptionField" layoutX="67.0" layoutY="134.0" prefHeight="81.0" prefWidth="200.0" />
+        <Button layoutX="226.0" layoutY="229.0" mnemonicParsing="false" onAction="#uploadOnClick" text="Upload" />
+        <Label fx:id="uploadStatusLabel" layoutX="27.0" layoutY="304.0" prefHeight="18.0" prefWidth="246.0" text="Label" />
+    </children>
+</AnchorPane>
