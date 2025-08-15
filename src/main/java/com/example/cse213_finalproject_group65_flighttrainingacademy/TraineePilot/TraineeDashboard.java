@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class Dashboard {
+public class TraineeDashboard {
 
     @FXML
     private Label welcomeLabel;

@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.Dashboard"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.TraineeDashboard"
             prefHeight="400.0" prefWidth="600.0">
 
     <!-- Title -->
