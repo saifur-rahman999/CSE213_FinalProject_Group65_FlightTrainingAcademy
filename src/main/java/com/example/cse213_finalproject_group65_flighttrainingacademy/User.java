@@ -84,14 +84,14 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", gender='" + gender + '\'' +
-                ", password='" + password + '\'' +
-                ", dob=" + dob +
+                "id='" + id + '\n' +
+                "name='" + name + '\n' +
+                "phoneNo='" + phoneNo + '\n' +
+                "email='" + email + '\n' +
+                "address='" + address + '\n' +
+                "gender='" + gender + '\n' +
+                "password='" + password + '\n' +
+                "dob=" + dob +
                 '}';
     }
 }
