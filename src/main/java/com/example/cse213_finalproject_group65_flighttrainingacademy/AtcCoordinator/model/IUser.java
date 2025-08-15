@@ -1,4 +1,6 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.AtcCoordinator.model;
 
-public class IUser {
+public interface IUser {
+    boolean login();
+    void logout();
 }
