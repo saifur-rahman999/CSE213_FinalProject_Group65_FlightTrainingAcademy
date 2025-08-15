@@ -1,122 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.MaintainInstructorQualifications"
-            prefHeight="560.0" prefWidth="900.0">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.TrackOutstanding"
+            prefWidth="980.0" prefHeight="640.0">
 
     <children>
-        <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+        <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <children>
 
-            <!-- TOP -->
-            <top>
-                <HBox spacing="12" alignment="CENTER_LEFT"
-                      style="-fx-background-color:#0f172a; -fx-padding:10 14;">
+                <!-- Filters row -->
+                <HBox spacing="10.0">
                     <children>
-                        <Label text="TRO — Instructor Qualifications"
-                               style="-fx-text-fill:white; -fx-font-size:16px; -fx-font-weight:bold;"/>
-                        <Pane HBox.hgrow="ALWAYS"/>
-                        <Label fx:id="statusLabel" text="Ready." style="-fx-text-fill:white;"/>
+                        <Label text="Intake:"/>
+                        <ComboBox fx:id="intakeCombo" prefWidth="150.0"/>
+
+                        <Label text="Course:"/>
+                        <ComboBox fx:id="courseCombo" prefWidth="200.0"/>
+
+                        <Label text="Bucket:"/>
+                        <ChoiceBox fx:id="bucketChoice"/> <!-- All, 30+, 60+, 90+ -->
+
+                        <Button text="Apply Filters" onAction="#onApplyFilters"/>
+                        <Button text="Generate Reminders" onAction="#onGenerateReminders"/>
                     </children>
                 </HBox>
-            </top>
 
-            <!-- LEFT: selection + form -->
-            <left>
-                <VBox spacing="10" prefWidth="320" style="-fx-padding:12;">
-                    <children>
-                        <TitledPane text="Select Instructor" expanded="true">
-                            <content>
-                                <VBox spacing="8" style="-fx-padding:10;">
-                                    <children>
-                                        <Label text="Instructor ID"/>
-                                        <ComboBox fx:id="instructorCombo" promptText="Choose instructor"/>
-                                        <Label text="Name"/>
-                                        <TextField fx:id="instructorNameField" editable="false"/>
-                                    </children>
-                                </VBox>
-                            </content>
-                        </TitledPane>
+                <!-- Table -->
+                <TableView fx:id="duesTable" prefHeight="320.0">
+                    <columns>
+                        <TableColumn fx:id="colInvoiceId" text="Invoice ID" prefWidth="110.0"/>
+                        <TableColumn fx:id="colTrainee"   text="Trainee"    prefWidth="160.0"/>
+                        <TableColumn fx:id="colCourse"    text="Course"     prefWidth="160.0"/>
+                        <TableColumn fx:id="colIntake"    text="Intake"     prefWidth="110.0"/>
+                        <TableColumn fx:id="colDue"       text="Due Date"   prefWidth="120.0"/>
+                        <TableColumn fx:id="colBalance"   text="Balance"    prefWidth="110.0"/>
+                        <TableColumn fx:id="colBucket"    text="Bucket"     prefWidth="90.0"/>
+                    </columns>
+                </TableView>
 
-                        <TitledPane text="Qualification Details" expanded="true">
-                            <content>
-                                <GridPane hgap="8" vgap="8" style="-fx-padding:10;">
-                                    <columnConstraints>
-                                        <ColumnConstraints percentWidth="40"/>
-                                        <ColumnConstraints percentWidth="60"/>
-                                    </columnConstraints>
-                                    <children>
-                                        <Label text="Rating" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                        <TextField fx:id="ratingField" promptText="e.g., CFI, IR"
-                                                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <!-- Optional bar chart -->
+                <BorderPane>
+                    <center>
+                        <BarChart fx:id="bucketChart">
+                            <xAxis>
+                                <CategoryAxis label="Bucket"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Total Balance"/>
+                            </yAxis>
+                        </BarChart>
+                    </center>
+                </BorderPane>
 
-                                        <Label text="Expiry Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                        <DatePicker fx:id="expiryPicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
-                                        <Label text="Notes" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                        <TextArea fx:id="notesArea" prefRowCount="3"
-                                                  GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                                    </children>
-                                </GridPane>
-                            </content>
-                        </TitledPane>
-
-                        <HBox spacing="8" alignment="CENTER_RIGHT">
-                            <children>
-                                <Label fx:id="errorLabel" style="-fx-text-fill:#b91c1c;" HBox.hgrow="ALWAYS"/>
-                                <Button text="Back" onAction="#onBack"/>
-                                <Button text="Delete" onAction="#onDelete" fx:id="deleteBtn"/>
-                                <Button text="Update" onAction="#onUpdate" fx:id="updateBtn"/>
-                                <Button text="Add" onAction="#onAdd" fx:id="addBtn" defaultButton="true"/>
-                            </children>
-                        </HBox>
-                    </children>
-                </VBox>
-            </left>
-
-            <!-- CENTER: table -->
-            <center>
-                <VBox spacing="10" style="-fx-padding:12;">
-                    <children>
-                        <HBox spacing="8" alignment="CENTER_LEFT">
-                            <children>
-                                <Label text="Qualifications for selected instructor" style="-fx-font-weight:bold;"/>
-                                <Pane HBox.hgrow="ALWAYS"/>
-                                <CheckBox fx:id="showExpiringOnlyCheck" text="Show expiring in 30 days"
-                                          onAction="#onToggleExpiringOnly"/>
-                            </children>
-                        </HBox>
-
-                        <TableView fx:id="qualsTable" prefHeight="420">
-                            <columns>
-                                <TableColumn fx:id="ratingCol" text="Rating" prefWidth="180"/>
-                                <TableColumn fx:id="expiryCol" text="Expiry Date" prefWidth="160"/>
-                                <TableColumn fx:id="daysLeftCol" text="Days Left" prefWidth="120"/>
-                                <TableColumn fx:id="notesCol" text="Notes" prefWidth="280"/>
-                            </columns>
-                            <placeholder>
-                                <Label text="No qualifications yet for this instructor."/>
-                            </placeholder>
-                        </TableView>
-                    </children>
-                </VBox>
-            </center>
-
-            <!-- BOTTOM -->
-            <bottom>
-                <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color:#f1f5f9; -fx-padding:8 12;">
-                    <children>
-                        <Label text="Hints:"/>
-                        <Label text="• Add/Update/Delete a qualification for the selected instructor. • Rows nearing expiry are highlighted."/>
-                    </children>
-                </HBox>
-            </bottom>
-
-        </BorderPane>
+                <Label fx:id="messageLabel" text="" style="-fx-text-fill: #444;"/>
+            </children>
+            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+        </VBox>
     </children>
 </AnchorPane>
