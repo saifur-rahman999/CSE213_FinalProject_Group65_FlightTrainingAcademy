@@ -1,6 +1,5 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot;
 
-<<<<<<< Updated upstream
 import com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.Model.ScheduleEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
