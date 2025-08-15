@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 import javax.swing.*;
+import java.io.IOException;
 
 //Created By Md. Saifur Rahman
 
@@ -37,10 +38,14 @@ public class LoginController
 
 
     private void goTo(String fxmlPath) {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            messageTextArea.setText("Failed to load dashboard:\n" + ex.getMessage());
+        }
     }
 
     @javafx.fxml.FXML
@@ -105,7 +110,7 @@ public class LoginController
 
             else if (userType.equals("Ground Instructor")) {
                 if (id.equals("0005") && password.equals("ginstructor")) {
-                    goTo("com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor.GroundInstructorDashboardController");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/GroundInstructor/GroundInstructorDashboard.fxml");
                 }
                 else {
                     messageTextArea.setText("Wrong User ID or Password for Ground Instructor.");
