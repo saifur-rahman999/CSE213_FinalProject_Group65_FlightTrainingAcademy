@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.Messages"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <!-- Messages List -->
+        <ListView fx:id="messagesListView" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="560.0" />
+
+        <!-- Message Content Area -->
+        <TextArea fx:id="messageContentArea" layoutX="20.0" layoutY="230.0" prefHeight="80.0" prefWidth="560.0"
+                  promptText="Type your message here..." wrapText="true" />
+
+        <!-- Buttons -->
+        <Button fx:id="sendButton" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" text="Send" />
+        <Button fx:id="replyButton" layoutX="480.0" layoutY="320.0" mnemonicParsing="false" text="Reply" />
+    </children>
+
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.ManageSessionsController"
+            prefHeight="500.0" prefWidth="800.0">
+
+    <Label text="Manage Training Sessions"
+           layoutX="300.0" layoutY="20.0"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="sessionsTableView" layoutX="50.0" layoutY="70.0" prefWidth="700.0" prefHeight="350.0">
+        <columns>
+            <TableColumn fx:id="sessionIdColumn" text="Session ID" prefWidth="80"/>
+            <TableColumn fx:id="flightDateColumn" text="Flight Date" prefWidth="100"/>
+            <TableColumn fx:id="flightTimeColumn" text="Flight Time" prefWidth="100"/>
+            <TableColumn fx:id="sessionTypeColumn" text="Session Type" prefWidth="100"/>
+            <TableColumn fx:id="traineeBatchColumn" text="Trainee/Batch ID" prefWidth="120"/>
+            <TableColumn fx:id="aircraftColumn" text="Aircraft Type" prefWidth="100"/>
+            <TableColumn fx:id="locationColumn" text="Training Location" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button fx:id="addSessionButton" text="Add New Session" layoutX="50.0" layoutY="440.0" prefWidth="120"/>
+    <Button fx:id="editSessionButton" text="Edit" layoutX="200.0" layoutY="440.0" prefWidth="80"/>
+    <Button fx:id="deleteSessionButton" text="Delete" layoutX="300.0" layoutY="440.0" prefWidth="80"/>
+    <Button fx:id="refreshButton" text="Refresh" layoutX="400.0" layoutY="440.0" prefWidth="80"/>
+
+</AnchorPane>
