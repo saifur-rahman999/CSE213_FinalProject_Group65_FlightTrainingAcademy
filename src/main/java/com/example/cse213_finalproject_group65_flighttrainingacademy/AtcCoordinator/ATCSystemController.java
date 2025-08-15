@@ -1,5 +1,6 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.AtcCoordinator;
 
+import com.example.cse213_finalproject_group65_flighttrainingacademy.AtcCoordinator.model.ATCSystem;
 import com.example.cse213_finalproject_group65_flighttrainingacademy.AtcCoordinator.model.FlightSchedule;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
