@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.UpdateSession"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.UpdateSession"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            prefWidth="900" prefHeight="540">
+    <children>
+        <Label layoutX="20" layoutY="14" text="Sessions" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+        <TableView fx:id="sessionsTable" layoutX="20" layoutY="50" prefWidth="860" prefHeight="420">
+            <columns>
+                <TableColumn fx:id="idCol" text="Session ID" prefWidth="100"/>
+                <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
+                <TableColumn fx:id="traineeCol" text="Trainee" prefWidth="160"/>
+                <TableColumn fx:id="durationCol" text="Duration (min)" prefWidth="120"/>
+                <TableColumn fx:id="aircraftCol" text="Aircraft/Device" prefWidth="180"/>
+                <TableColumn fx:id="editedCol" text="Edited" prefWidth="80"/>
+                <TableColumn fx:id="remarksCol" text="Remarks" prefWidth="200"/>
+            </columns>
+        </TableView>
 
+        <Button fx:id="editBtn" layoutX="20" layoutY="485" text="Edit"
+                onAction="#editButtonOnAction" prefWidth="120"/>
+        <Button layoutX="150" layoutY="485" text="Reload"
+                onAction="#reloadButtonOnAction" prefWidth="120"/>
+        <Label fx:id="statusLabel" layoutX="290" layoutY="490" textFill="#444"/>
+    </children>
 </AnchorPane>

@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor.GroundInstructorDashboard"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<BorderPane fx:id="groundInstructorInfoBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor.GroundInstructorDashboardController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox prefHeight="374.0" prefWidth="156.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#viewClassSessionsOA" prefHeight="26.0" prefWidth="164.0" text="View Class Sessions" />
+            <Button mnemonicParsing="false" onAction="#takeAttendanceOA" prefHeight="26.0" prefWidth="156.0" text="Take Attendance" />
+            <Button mnemonicParsing="false" onAction="#recordExamScoreOA" prefHeight="26.0" prefWidth="157.0" text="Record Exam Score" />
+            <Button mnemonicParsing="false" onAction="#uploadMaterialsOA" prefHeight="26.0" prefWidth="158.0" text="Upload Materials" />
+            <Button mnemonicParsing="false" onAction="#viewTrainingProgressOA" prefHeight="26.0" prefWidth="157.0" text="View Training Progress" />
+            <Button mnemonicParsing="false" onAction="#certifyStudentOA" prefHeight="26.0" prefWidth="160.0" text="Certify Student" />
+            <Button mnemonicParsing="false" onAction="#postAnnouncementsOA" prefHeight="26.0" prefWidth="162.0" text="Post Announcements" />
+            <Button mnemonicParsing="false" onAction="#downloadStudentGradesOA" text="Download Student Grades" />
+            <Button layoutX="10.0" layoutY="195.0" mnemonicParsing="false" onAction="#signoutOA" prefHeight="26.0" prefWidth="158.0" text="Signout" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="165.0" text="Ground Instructor Dashboard">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="groundInstructorInfoTA" layoutX="49.0" layoutY="52.0" prefHeight="337.0" prefWidth="550.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
