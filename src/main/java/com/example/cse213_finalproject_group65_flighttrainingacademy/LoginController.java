@@ -22,6 +22,8 @@ public class LoginController
 
     @javafx.fxml.FXML
     public void initialize() {
+        messageTextArea.setEditable(false);
+        messageTextArea.setWrapText(true);
         userTypeComboBox.setItems(FXCollections.observableArrayList("Aircraft Maintenance Engineer", "ATC Coordinator", "Finance and Enrollment Officer", "Flight Instructor", "Ground Instructor", "Operation Manager", "Trainee Pilot", "Training Records Officer"));
     }
 
@@ -130,12 +132,12 @@ public class LoginController
         }
 
         if (userType.equals("Training Records Officer")) {
-            if (id.equals("0002") && password.equals("tro")){
+            if (id.equals("0008") && password.equals("tro")){
                 System.out.print("gg");
             }
 
             else {
-                System.out.print("Wrong User ID or Password for Training Records Officer.");
+                messageTextArea.setText("Wrong User ID or Password for Training Records Officer");
             }
         }
 
