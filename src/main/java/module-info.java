@@ -15,4 +15,5 @@ module com.example.cse213_finalproject_group65_flighttrainingacademy {
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot to javafx.fxml, javafx.base;
     exports com.example.cse213_finalproject_group65_flighttrainingacademy;
     opens com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model to javafx.base, javafx.fxml;
+    opens com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model to javafx.base, javafx.fxml;
 }

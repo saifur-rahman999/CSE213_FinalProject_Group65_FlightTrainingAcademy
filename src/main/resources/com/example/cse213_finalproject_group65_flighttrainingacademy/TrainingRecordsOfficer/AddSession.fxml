@@ -51,6 +51,8 @@
                 <Label fx:id="errorLabel" style="-fx-text-fill: red;" HBox.hgrow="ALWAYS"/>
                 <Button text="Cancel" onAction="#onCancel"/>
                 <Button text="Save" onAction="#onSave" defaultButton="true"/>
+                <Button fx:id="saveButton" text="Save" onAction="#onSave" defaultButton="true"/>
+
             </children>
         </HBox>
     </bottom>

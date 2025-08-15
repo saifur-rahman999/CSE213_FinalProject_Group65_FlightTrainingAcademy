@@ -1,5 +1,6 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer;
 
+import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.AddSessionModel;
 import javafx.beans.binding.BooleanBinding;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
