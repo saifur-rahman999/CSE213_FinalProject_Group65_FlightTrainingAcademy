@@ -1,9 +1,15 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class FEODashBoard {
     @javafx.fxml.FXML
@@ -120,7 +126,8 @@ public class FEODashBoard {
     }
 
     @javafx.fxml.FXML
-    public void onAddPayment(ActionEvent actionEvent) {
+    public void onAddPayment(ActionEvent actionEvent) throws IOException {
+
     }
 
     @javafx.fxml.FXML
