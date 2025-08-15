@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.ViewSchedule">
+<AnchorPane prefHeight="359.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TraineePilot.ViewSchedule">
     <children>
-        <TableView fx:id="tableView" layoutX="37.0" layoutY="80.0" prefHeight="200.0" prefWidth="557.0">
+        <TableView fx:id="tableView" layoutX="56.0" layoutY="78.0" prefHeight="200.0" prefWidth="594.0">
             <columns>
                 <TableColumn fx:id="sessionidco" prefWidth="67.19998168945312" text="Session ID" />
                 <TableColumn fx:id="flightDateCo" prefWidth="72.00007629394531" text="Flight Date" />
@@ -16,9 +19,21 @@
                 <TableColumn fx:id="sessionTypeCo" prefWidth="80.79998779296875" text="Session Type" />
                 <TableColumn fx:id="trauneeIDco" prefWidth="101.60003662109375" text="Trainee/Batch ID" />
                 <TableColumn fx:id="aircraftTypeCo" prefWidth="80.79998779296875" text="Aircraft Type" />
-                <TableColumn fx:id="trainingLocCo" prefWidth="80.79998779296875" text="Training Location" />
+                <TableColumn fx:id="trainingLocCo" prefWidth="118.39999999999998" text="Training Location" />
             </columns>
         </TableView>
-        <Button layoutX="361.0" layoutY="319.0" mnemonicParsing="false" onAction="#refreshOnClick" text="Refresh" />
+        <Button layoutX="566.0" layoutY="301.0" mnemonicParsing="false" onAction="#exportScheduleOnClick" text="Export Schedule PDF" />
+      <Label layoutX="449.0" layoutY="41.0" text="Start Date" />
+      <Label layoutX="542.0" layoutY="41.0" text="End Date" />
+      <HBox fx:id="FilterHBox" layoutX="342.0" layoutY="15.0" prefHeight="26.0" prefWidth="354.0">
+         <children>
+            <ComboBox fx:id="sessionTypeComboBox" prefHeight="26.0" prefWidth="100.0" />
+            <DatePicker fx:id="StartDatePicker" prefHeight="26.0" prefWidth="100.0" />
+            <DatePicker fx:id="endDatePicker" prefHeight="26.0" prefWidth="101.0" />
+            <Button mnemonicParsing="false" onAction="#ApplyFilterOnClick" prefHeight="26.0" prefWidth="84.0" text="Apply Filter" />
+         </children>
+      </HBox>
+      <Label layoutX="353.0" layoutY="41.0" text="Session Type" />
+      <Label fx:id="dateRangeValidationLabel" layoutX="682.0" layoutY="59.0" prefHeight="65.0" prefWidth="199.0" text="Alert" />
     </children>
 </AnchorPane>
