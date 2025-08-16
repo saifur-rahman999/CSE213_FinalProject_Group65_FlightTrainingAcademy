@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.AircraftMaintenanceEngineer.AircraftMaintenanceEngineerDashboardController">
+   <children>
+      <Label layoutX="173.0" layoutY="14.0" text="Aircraft Maintenance Engineer Dashboard">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="107.0" layoutY="101.0" mnemonicParsing="false" onAction="#reportDefectButtonOA" prefHeight="26.0" prefWidth="190.0" text="Report Defect" />
+      <Button layoutX="107.0" layoutY="152.0" mnemonicParsing="false" onAction="#scheduleMaintenanceButtonOA" prefHeight="26.0" prefWidth="190.0" text="Schedule Maintenance" />
+      <Button layoutX="107.0" layoutY="204.0" mnemonicParsing="false" onAction="#markOutOfServiceButtonOA" prefHeight="26.0" prefWidth="190.0" text="Mark Out-of-Service" />
+      <Button layoutX="107.0" layoutY="254.0" mnemonicParsing="false" onAction="#returnToServiceButtonOA" prefHeight="26.0" prefWidth="190.0" text="Return to Service" />
+      <Button layoutX="503.0" layoutY="101.0" mnemonicParsing="false" onAction="#updateMaintenanceRecordButtonOA" prefHeight="26.0" prefWidth="190.0" text="Update Maintenance Record" />
+      <Button layoutX="503.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewAircraftStatusButtonOA" prefHeight="26.0" prefWidth="190.0" text="View Aircraft Status" />
+      <Button layoutX="503.0" layoutY="204.0" mnemonicParsing="false" onAction="#viewMaintenanceScheduleButtonOA" prefHeight="26.0" prefWidth="190.0" text="View Maintenance Schedule" />
+      <Button layoutX="503.0" layoutY="254.0" mnemonicParsing="false" onAction="#viewMaintenanceHistoryButtonOA" prefHeight="26.0" prefWidth="190.0" text="View Maintenance History" />
+      <Button layoutX="107.0" layoutY="374.0" mnemonicParsing="false" onAction="#signoutButtonOnAction" text="Signout" />
+   </children>
+</AnchorPane>
