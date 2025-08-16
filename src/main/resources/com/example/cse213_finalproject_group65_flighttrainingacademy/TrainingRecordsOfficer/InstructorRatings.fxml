@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.InstructorRatingsController"
+            prefWidth="880" prefHeight="520">
+
+    <left>
+        <VBox spacing="8" BorderPane.alignment="CENTER">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Instructors"/>
+            <TableView fx:id="instructorTable" prefWidth="320" prefHeight="460">
+                <columns>
+                    <TableColumn fx:id="colInstrId" text="ID" prefWidth="100"/>
+                    <TableColumn fx:id="colInstrName" text="Name" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10" BorderPane.alignment="CENTER">
+            <padding><Insets top="10" right="10" bottom="10" left="0"/></padding>
+
+            <Label text="Ratings for Selected Instructor"/>
+            <TableView fx:id="ratingTable" prefHeight="360">
+                <columns>
+                    <TableColumn fx:id="colRatingLabel" text="Rating" prefWidth="220"/>
+                    <TableColumn fx:id="colExpiry" text="Expiry" prefWidth="160"/>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="10" vgap="10">
+                <Label text="Rating" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="ratingField" promptText="e.g. CPL, IR, ME"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Expiry" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <DatePicker fx:id="expiryPicker" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            </GridPane>
+
+            <HBox spacing="8">
+                <Button text="Add" onAction="#onAdd"/>
+                <Button text="Update" onAction="#onUpdate"/>
+                <Button text="Delete" onAction="#onDelete"/>
+                <Label fx:id="statusLabel" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

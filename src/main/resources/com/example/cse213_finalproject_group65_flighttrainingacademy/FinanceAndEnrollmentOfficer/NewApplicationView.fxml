@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.NewApplicationController"
+            prefWidth="520" prefHeight="360">
+    <children>
+        <VBox spacing="12" AnchorPane.leftAnchor="16" AnchorPane.rightAnchor="16"
+              AnchorPane.topAnchor="16" AnchorPane.bottomAnchor="16">
+            <children>
+                <Label text="New Application" style="-fx-font-size:18; -fx-font-weight:bold;"/>
+
+                <GridPane hgap="10" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <children>
+                        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="nameField" promptText="Full name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="emailField" promptText="name@example.com" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <Label text="Intake Month:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="intakeCombo" promptText="Select month" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <Label text="Course:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="courseCombo" promptText="Select course" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    </children>
+                </GridPane>
+
+                <HBox spacing="10">
+                    <Button text="Create (Save to applications.txt)" onAction="#onCreate"/>
+                    <Button text="Reset" onAction="#onReset"/>
+                    <Pane HBox.hgrow="ALWAYS"/>
+                    <Button text="Close" onAction="#onClose"/>
+                </HBox>
+
+                <TitledPane text="Hint" expanded="false">
+                    <content>
+                        <Label wrapText="true"
+                               text="This saves to data/applications.txt (pipe-delimited). Validation: name not blank; email contains '@'. Status = PENDING."/>
+                    </content>
+                </TitledPane>
+            </children>
+            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+        </VBox>
+    </children>
+</AnchorPane>
