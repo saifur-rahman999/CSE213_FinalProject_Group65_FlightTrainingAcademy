@@ -1,8 +1,5 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer;
 
-import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.ArchivedTrainee;
-import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.Trainee;
-import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.TraineeRepository;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;

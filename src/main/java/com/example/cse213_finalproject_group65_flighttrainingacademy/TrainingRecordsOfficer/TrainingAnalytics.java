@@ -18,9 +18,6 @@ import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.AssessmentRecord;
-import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.Model.SessionRecord;
-
 public class TrainingAnalytics {
 
     // FXML
