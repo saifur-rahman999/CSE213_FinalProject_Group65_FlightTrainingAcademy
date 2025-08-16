@@ -1,23 +1,29 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.AircraftMaintenanceEngineer;
 
+import com.example.cse213_finalproject_group65_flighttrainingacademy.HelloApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class ScheduleMaintenanceController
 {
     @javafx.fxml.FXML
-    private ComboBox priorityComboBox;
+    private ComboBox<String> priorityComboBox;
     @javafx.fxml.FXML
     private TableColumn aircraftIdCol;
     @javafx.fxml.FXML
     private TableColumn dateCol;
     @javafx.fxml.FXML
-    private ComboBox aircraftIdComboBox;
+    private ComboBox<String> aircraftIdComboBox;
     @javafx.fxml.FXML
     private TableColumn priorityCol;
     @javafx.fxml.FXML
@@ -49,7 +55,12 @@ public class ScheduleMaintenanceController
     }
 
     @javafx.fxml.FXML
-    public void backToDashboardButtonOnAction(ActionEvent actionEvent) {
+    public void backToDashboardButtonOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AircraftMaintenanceEngineer/AircraftMaintenanceEngineerDashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @javafx.fxml.FXML
