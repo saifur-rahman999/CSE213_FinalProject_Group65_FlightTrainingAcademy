@@ -28,7 +28,7 @@ public class LoginController
     @javafx.fxml.FXML
     private PasswordField passwordField;
 
-
+//Created By Md. Saifur Rahman
     @javafx.fxml.FXML
     public void initialize() {
         messageTextArea.setEditable(false);
@@ -74,7 +74,7 @@ public class LoginController
         else {
             if (userType.equals("Aircraft Maintenance Engineer")) {
                 if (id.equals("0001") && password.equals("engineer")) {
-                    System.out.print("gg");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/AircraftMaintenanceEngineer/AircraftMaintenanceEngineerDashboard.fxml");
                 }
                 else {
                     messageTextArea.setText("Wrong User ID or Password for Aircraft Maintenance Engineer.");
