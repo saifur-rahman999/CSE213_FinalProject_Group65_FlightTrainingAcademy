@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.QuickAnalyticsController"
+            prefWidth="880" prefHeight="520">
+    <children>
+        <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+            <HBox spacing="8">
+                <Label text="From:"/>
+                <DatePicker fx:id="fromDatePicker"/>
+                <Label text="To:"/>
+                <DatePicker fx:id="toDatePicker"/>
+                <Button text="Compute" onAction="#onCompute"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Total Hours:"/>
+                <Label fx:id="totalHoursLabel" text="0"/>
+                <Label text="Months:" style="-fx-padding:0 0 0 12;"/>
+                <Label fx:id="monthsCountLabel" text="0"/>
+            </HBox>
+
+            <BarChart fx:id="hoursBarChart" animated="false" legendVisible="false" prefHeight="440">
+                <xAxis>
+                    <CategoryAxis fx:id="monthAxis" label="Month (YYYY-MM)"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="hoursAxis" label="Hours" forceZeroInRange="true"/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </children>
+</AnchorPane>

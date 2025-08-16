@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.GenerateInvoiceController"
+            prefWidth="520" prefHeight="260">
+    <children>
+        <VBox spacing="12" AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16">
+            <children>
+                <Label text="Generate Invoice" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="30"/>
+                        <ColumnConstraints percentWidth="70"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                    </rowConstraints>
+
+                    <Label text="Applicant:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="applicantCombo" promptText="Select applicant"
+                              GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="320"/>
+
+                    <Label text="Amount:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="amountField" promptText="e.g. 15000.00"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10">
+                    <Button fx:id="btnGenerate" text="Generate Invoice" onAction="#onGenerate"/>
+                </HBox>
+
+                <Label fx:id="hintLabel" text="Pick/create a .bin file when prompted. 'invoices.bin' is suggested."
+                       style="-fx-text-fill: gray"/>
+            </children>
+            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+        </VBox>
+    </children>
+</AnchorPane>
