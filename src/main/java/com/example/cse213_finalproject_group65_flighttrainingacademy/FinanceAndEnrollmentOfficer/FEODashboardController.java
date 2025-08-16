@@ -6,9 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
+import java.net.URL;
+
 public class FEODashboardController {
 
-    // Absolute resource paths (match your resources folder structure)
     private static final String BASE = "/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/";
     private static final String NEW_APP          = BASE + "NewApplicationView.fxml";
     private static final String GEN_INVOICE      = BASE + "GenerateInvoiceView.fxml";
@@ -26,14 +28,23 @@ public class FEODashboardController {
 
     private void switchTo(ActionEvent e, String fxmlAbsPath) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlAbsPath));
+            URL url = FEODashboardController.class.getResource(fxmlAbsPath);
+            if (url == null) {
+                showError("Missing FXML on classpath:\n" + fxmlAbsPath);
+                return;
+            }
+            Parent root = FXMLLoader.load(url);
             ((Node) e.getSource()).getScene().setRoot(root);
-        } catch (Exception ex) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Navigation Error");
-            a.setHeaderText(null);
-            a.setContentText("Failed to open view:\n" + fxmlAbsPath + "\n\n" + ex.getMessage());
-            a.showAndWait();
+        } catch (IOException ex) {
+            showError("Failed to load view:\n" + fxmlAbsPath + "\n\n" + ex.getMessage());
         }
+    }
+
+    private void showError(String msg) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Navigation Error");
+        a.setHeaderText(null);
+        a.setContentText(msg);
+        a.showAndWait();
     }
 }
