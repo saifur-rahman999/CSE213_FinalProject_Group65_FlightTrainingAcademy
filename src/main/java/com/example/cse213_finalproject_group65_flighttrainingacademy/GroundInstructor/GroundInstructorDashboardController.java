@@ -15,7 +15,6 @@ public class GroundInstructorDashboardController
     public void initialize() {
         groundInstructorInfoTA.setEditable(false);
         groundInstructorInfoTA.setWrapText(true);
-        groundInstructorInfoTA.setText(gi);
     }
 
     @javafx.fxml.FXML
