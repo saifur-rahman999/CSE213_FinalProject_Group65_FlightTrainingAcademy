@@ -34,6 +34,11 @@ public class AircraftMaintenanceEngineerDashboardController
 
     @javafx.fxml.FXML
     public void scheduleMaintenanceButtonOA(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AircraftMaintenanceEngineer/ScheduleMaintenance.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @javafx.fxml.FXML
@@ -42,6 +47,11 @@ public class AircraftMaintenanceEngineerDashboardController
 
     @javafx.fxml.FXML
     public void signoutButtonOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @javafx.fxml.FXML

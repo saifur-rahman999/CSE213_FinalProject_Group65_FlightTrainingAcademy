@@ -92,7 +92,8 @@ public class LoginController
 
             else if (userType.equals("Finance and Enrollment Officer")) {
                 if (id.equals("0003") && password.equals("feo")) {
-                    System.out.print("gg");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashboardController.fxml");
+                    //FinanceAndEnrollmentOfficer.FEODashboardController
                 }
                 else {
                     messageTextArea.setText("Wrong User ID or Password for Finance and Enrollment Officer.");
@@ -128,7 +129,7 @@ public class LoginController
 
             else if (userType.equals("Trainee Pilot")) {
                 if (id.equals("0007") && password.equals("pilot")) {
-                    System.out.print("gg");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/TraineePilot.TraineeDashboard.fxml");
                 }
                 else {
                     messageTextArea.setText("Wrong User ID or Password for Trainee Pilot.");
@@ -137,7 +138,8 @@ public class LoginController
 
             else if (userType.equals("Training Records Officer")) {
                 if (id.equals("0008") && password.equals("tro")) {
-                    System.out.print("gg");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/TrainingRecordsOfficer/TRODashBoard.fxml");
+                    //TrainingRecordsOfficer.TRODashBoard
                 }
                 else {
                     messageTextArea.setText("Wrong User ID or Password for Training Records Officer.");
