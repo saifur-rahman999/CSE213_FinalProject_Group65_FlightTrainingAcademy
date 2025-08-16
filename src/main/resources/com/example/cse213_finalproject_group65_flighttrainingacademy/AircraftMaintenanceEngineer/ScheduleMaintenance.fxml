@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.AircraftMaintenanceEngineer.ScheduleMaintenanceController">
+   <children>
+      <Label layoutX="290.0" layoutY="27.0" text="Schedule Maintenance">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="83.0" text="Aircraft ID" />
+      <Label layoutX="81.0" layoutY="130.0" text="Date" />
+      <ComboBox fx:id="aircraftIdComboBox" layoutX="161.0" layoutY="79.0" prefWidth="150.0" />
+      <DatePicker fx:id="datePicker" layoutX="161.0" layoutY="126.0" />
+      <Label layoutX="475.0" layoutY="83.0" text="Priority" />
+      <ComboBox fx:id="priorityComboBox" layoutX="544.0" layoutY="79.0" prefWidth="150.0" />
+      <TableView fx:id="scheduleMaintenanceTableView" layoutX="125.0" layoutY="225.0" prefHeight="166.0" prefWidth="519.0">
+        <columns>
+          <TableColumn fx:id="aircraftIdCol" prefWidth="220.79998779296875" text="Aircraft ID" />
+          <TableColumn fx:id="priorityCol" prefWidth="136.800048828125" text="Priority" />
+            <TableColumn fx:id="dateCol" prefWidth="161.60003662109375" text="Date" />
+        </columns>
+      </TableView>
+      <Button layoutX="618.0" layoutY="117.0" mnemonicParsing="false" onAction="#saveButtonOnAction" prefHeight="26.0" prefWidth="77.0" text="Save" />
+      <TextArea fx:id="messageTextArea" layoutX="349.0" layoutY="165.0" prefHeight="51.0" prefWidth="345.0" />
+      <Button layoutX="72.0" layoutY="411.0" mnemonicParsing="false" onAction="#backToDashboardButtonOnAction" text="Back to dashboard" />
+   </children>
+</AnchorPane>

@@ -43,6 +43,8 @@ public class ReportDefectController
 
     @javafx.fxml.FXML
     public void initialize() {
+        errorTextArea.setEditable(false);
+        errorTextArea.setWrapText(true);
         idCol.setCellValueFactory(new PropertyValueFactory<>("aircraftId"));
         severityCol.setCellValueFactory(new PropertyValueFactory<>("severity"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
