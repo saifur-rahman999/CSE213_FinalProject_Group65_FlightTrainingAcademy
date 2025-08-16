@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.TableView.TableViewSelectionModel?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.OutstandingController"
+            prefWidth="740" prefHeight="420">
+
+    <children>
+        <VBox spacing="8" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+            <children>
+
+                <ToolBar>
+                    <Button text="Find Outstanding" onAction="#onFindOutstanding"/>
+                    <Button text="Send Alerts" onAction="#onSendAlerts"/>
+                    <Separator/>
+                    <Label fx:id="statusLabel" text="Ready"/>
+                </ToolBar>
+
+                <TableView fx:id="table" prefHeight="360">
+                    <columns>
+                        <TableColumn fx:id="colId"       text="Invoice ID" prefWidth="90"/>
+                        <TableColumn fx:id="colName"     text="Applicant"  prefWidth="180"/>
+                        <TableColumn fx:id="colEmail"    text="Email"      prefWidth="220"/>
+                        <TableColumn fx:id="colAmount"   text="Amount"     prefWidth="90"/>
+                        <TableColumn fx:id="colPaid"     text="Paid"       prefWidth="90"/>
+                        <TableColumn fx:id="colDue"      text="Due"        prefWidth="90"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+
+                </TableView>
+
+                <Label text="Note: This is a dummy screen. Data lives in the controller. No file I/O." style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

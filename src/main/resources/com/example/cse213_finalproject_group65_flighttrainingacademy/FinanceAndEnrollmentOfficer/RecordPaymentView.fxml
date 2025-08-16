@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.RecordPaymentController"
+      spacing="10" prefWidth="380" prefHeight="150" style="-fx-padding:12;">
+    <children>
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="35"/>
+                <ColumnConstraints percentWidth="65"/>
+            </columnConstraints>
+
+            <Label text="Invoice ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="invoiceIdField" promptText="e.g. 1001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Amount:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="amountField" promptText="> 0 and ≤ due" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <Button text="Record Payment" onAction="#recordPayment" defaultButton="true"/>
+        <Label text="File: data/invoices.bin (fixed)" style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+    </children>
+</VBox>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.EnrollmentActionsController"
+            prefWidth="760" prefHeight="440">
+
+    <children>
+        <VBox spacing="8" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+            <children>
+
+                <ToolBar>
+                    <Button text="Withdraw (attendance missed < 12)" onAction="#onWithdraw"/>
+                    <Button text="Defer (grade < D)" onAction="#onDefer"/>
+                    <Separator/>
+                    <Label fx:id="statusLabel" text="Ready"/>
+                </ToolBar>
+
+                <TableView fx:id="table" prefHeight="360">
+                    <columns>
+                        <TableColumn fx:id="colId"     text="Student ID"       prefWidth="100"/>
+                        <TableColumn fx:id="colName"   text="Name"             prefWidth="200"/>
+                        <TableColumn fx:id="colMissed" text="Attendance Missed" prefWidth="170"/>
+                        <TableColumn fx:id="colGrade"  text="Grade"            prefWidth="120"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+
+                <Label text="Dummy demo: data lives in controller. No file I/O. Actions show popups only."
+                       style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
