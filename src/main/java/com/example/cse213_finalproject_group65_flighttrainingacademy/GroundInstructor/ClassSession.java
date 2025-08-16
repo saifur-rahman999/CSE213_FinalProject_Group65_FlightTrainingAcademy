@@ -1,7 +1,6 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class ClassSession {
     private String courseId;

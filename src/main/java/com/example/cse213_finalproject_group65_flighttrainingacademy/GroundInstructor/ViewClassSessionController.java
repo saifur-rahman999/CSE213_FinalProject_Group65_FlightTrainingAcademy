@@ -1,14 +1,20 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor;
 
+import com.example.cse213_finalproject_group65_flighttrainingacademy.HelloApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class ViewClassSessionController
@@ -42,7 +48,7 @@ public class ViewClassSessionController
         colCourseId.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         colTopic.setCellValueFactory(new PropertyValueFactory<>("topic"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colTime.setCellValueFactory(new PropertyValueFactory<>("timeText"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         allSessions.addAll(
                 new ClassSession("ADE101", "Introduction to Aerodynamics", LocalDate.now(), "08PM-10PM"),
@@ -78,6 +84,12 @@ public class ViewClassSessionController
     }
 
     @javafx.fxml.FXML
-    public void backToDashboardButtonOnAction(ActionEvent actionEvent) {
+    public void backToDashboardButtonOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GroundInstructor/GroundInstructorDashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

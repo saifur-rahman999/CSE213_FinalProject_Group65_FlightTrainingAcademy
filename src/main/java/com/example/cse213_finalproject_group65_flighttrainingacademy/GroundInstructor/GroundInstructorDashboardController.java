@@ -1,8 +1,15 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.GroundInstructor;
 
+import com.example.cse213_finalproject_group65_flighttrainingacademy.HelloApplication;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class GroundInstructorDashboardController
 {
@@ -18,7 +25,12 @@ public class GroundInstructorDashboardController
     }
 
     @javafx.fxml.FXML
-    public void signoutOA(ActionEvent actionEvent) {
+    public void signoutOA(ActionEvent actionEvent) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @javafx.fxml.FXML
@@ -34,7 +46,12 @@ public class GroundInstructorDashboardController
     }
 
     @javafx.fxml.FXML
-    public void viewClassSessionsOA(ActionEvent actionEvent) {
+    public void viewClassSessionsOA(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GroundInstructor/ViewClassSession.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @javafx.fxml.FXML
