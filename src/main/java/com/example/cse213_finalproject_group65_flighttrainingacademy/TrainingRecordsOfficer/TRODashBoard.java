@@ -1,90 +1,44 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer;
 
 import javafx.event.ActionEvent;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 public class TRODashBoard {
 
-    @Deprecated
-    public void onNavReports(ActionEvent actionEvent) {
-    }
+    private static final String BASE = "/com/example/cse213_finalproject_group65_flighttrainingacademy/TrainingRecordsOfficer/";
+    private static final String ADD_SESSION        = BASE + "AddSession.fxml";
+    private static final String EDIT_SESSIONS      = BASE + "EditSessions.fxml";
+    private static final String UPDATE_SESSION     = BASE + "UpdateSession.fxml";
+    private static final String SESSIONS_TABLE     = BASE + "SessionsTable.fxml";
+    private static final String SCHEDULE_VIEW      = BASE + "ScheduleView.fxml";
+    private static final String RECORD_ATTENDANCE  = BASE + "RecordAttendance.fxml";
+    private static final String EXPORT_ATTENDANCE  = BASE + "ExportAttendance.fxml";
+    private static final String INSTRUCTOR_RATINGS = BASE + "InstructorRatings.fxml";
+    private static final String QUICK_ANALYTICS    = BASE + "QuickAnalyticsView.fxml";
 
-    @Deprecated
-    public void onOpenProfile(ActionEvent actionEvent) {
-    }
+    public void openAddSession(ActionEvent e)       { switchTo(e, ADD_SESSION); }
+    public void openEditSessions(ActionEvent e)     { switchTo(e, EDIT_SESSIONS); }
+    public void openUpdateSession(ActionEvent e)    { switchTo(e, UPDATE_SESSION); }
+    public void openSessionsTable(ActionEvent e)    { switchTo(e, SESSIONS_TABLE); }
+    public void openScheduleView(ActionEvent e)     { switchTo(e, SCHEDULE_VIEW); }
+    public void openRecordAttendance(ActionEvent e) { switchTo(e, RECORD_ATTENDANCE); }
+    public void openExportAttendance(ActionEvent e) { switchTo(e, EXPORT_ATTENDANCE); }
+    public void openInstructorRatings(ActionEvent e){ switchTo(e, INSTRUCTOR_RATINGS); }
+    public void openQuickAnalytics(ActionEvent e)   { switchTo(e, QUICK_ANALYTICS); }
 
-    @Deprecated
-    public void onBackupData(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNavFlights(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onExportCsv(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onExportPdf(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onRestoreData(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNewRecord(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onResetFilters(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onSignOut(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onRefreshTable(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onDeleteSelected(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNavCertificates(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNavTrainees(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onEditSelected(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onApplyFilters(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNavInstructors(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onNavOverview(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onOpenSettings(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void onGlobalSearch(ActionEvent actionEvent) {
+    private void switchTo(ActionEvent e, String fxmlAbsPath) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlAbsPath));
+            ((Node) e.getSource()).getScene().setRoot(root);
+        } catch (Exception ex) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Navigation Error");
+            a.setHeaderText(null);
+            a.setContentText("Failed to open view:\n" + fxmlAbsPath + "\n\n" + ex.getMessage());
+            a.showAndWait();
+        }
     }
 }

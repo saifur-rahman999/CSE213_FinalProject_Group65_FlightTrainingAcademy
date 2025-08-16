@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.TRODashBoard"
-            prefHeight="400.0" prefWidth="600.0">
+            prefWidth="760" prefHeight="500">
 
+    <children>
+        <VBox spacing="14" AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16">
+            <children>
+                <Label text="Training Records Officer — Dashboard"
+                       style="-fx-font-size:18; -fx-font-weight:bold;"/>
+
+                <GridPane hgap="12" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="33"/>
+                        <ColumnConstraints percentWidth="33"/>
+                        <ColumnConstraints percentWidth="34"/>
+                    </columnConstraints>
+
+                    <!-- Row 1 -->
+                    <Button text="Add Session" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                            onAction="#openAddSession"/>
+                    <Button text="Edit Sessions" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                            onAction="#openEditSessions"/>
+                    <Button text="Update Session" GridPane.rowIndex="0" GridPane.columnIndex="2"
+                            onAction="#openUpdateSession"/>
+
+                    <!-- Row 2 -->
+                    <Button text="Sessions Table" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                            onAction="#openSessionsTable"/>
+                    <Button text="Schedule View" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                            onAction="#openScheduleView"/>
+                    <Button text="Record Attendance" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                            onAction="#openRecordAttendance"/>
+
+                    <!-- Row 3 -->
+                    <Button text="Export Attendance" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                            onAction="#openExportAttendance"/>
+                    <Button text="Instructor Ratings" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                            onAction="#openInstructorRatings"/>
+                    <Button text="Quick Analytics" GridPane.rowIndex="2" GridPane.columnIndex="2"
+                            onAction="#openQuickAnalytics"/>
+                </GridPane>
+
+                <Label text="Tip: buttons replace the current Scene root with the selected view."
+                       style="-fx-text-fill: #666; -fx-font-size:11;"/>
+            </children>
+            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+        </VBox>
+    </children>
 </AnchorPane>
