@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.SessionsTable"
+            prefWidth="720" prefHeight="400">
+
+    <top>
+        <ToolBar>
+            <Button text="Edit Selected" onAction="#onEdit"/>
+            <Button text="Seed 2 Dummy Rows" onAction="#onSeed"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+                <TableColumn fx:id="colTrainee" text="Trainee" prefWidth="120"/>
+                <TableColumn fx:id="colEquip" text="Aircraft/Device" prefWidth="160"/>
+                <TableColumn fx:id="colDur" text="Hours" prefWidth="80"/>
+                <TableColumn fx:id="colRemarks" text="Remarks" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
