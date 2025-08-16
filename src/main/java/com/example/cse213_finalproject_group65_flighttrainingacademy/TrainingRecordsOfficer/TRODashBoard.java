@@ -7,126 +7,84 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 public class TRODashBoard {
-    @javafx.fxml.FXML
-    private PieChart statusPieChart;
-    @javafx.fxml.FXML
-    private DatePicker fromDatePicker;
-    @javafx.fxml.FXML
-    private DatePicker toDatePicker;
-    @javafx.fxml.FXML
-    private ToggleGroup navToggleGroup;
-    @javafx.fxml.FXML
-    private Label statusBarLabel;
-    @javafx.fxml.FXML
-    private Label activeTraineesLabel;
-    @javafx.fxml.FXML
-    private TableColumn hoursCol;
-    @javafx.fxml.FXML
-    private TabPane mainTabPane;
-    @javafx.fxml.FXML
-    private Label flightsThisMonthLabel;
-    @javafx.fxml.FXML
-    private TableColumn lastFlightCol;
-    @javafx.fxml.FXML
-    private TextField globalSearchField;
-    @javafx.fxml.FXML
-    private ComboBox statusFilterCombo;
-    @javafx.fxml.FXML
-    private TableColumn licenseCol;
-    @javafx.fxml.FXML
-    private Label certsDueLabel;
-    @javafx.fxml.FXML
-    private TableColumn idCol;
-    @javafx.fxml.FXML
-    private ComboBox licenseFilterCombo;
-    @javafx.fxml.FXML
-    private TableColumn statusCol;
-    @javafx.fxml.FXML
-    private BarChart hoursBarChart;
-    @javafx.fxml.FXML
-    private TableColumn nameCol;
-    @javafx.fxml.FXML
-    private ProgressIndicator busyIndicator;
-    @javafx.fxml.FXML
-    private TableView traineeTable;
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavReports(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onOpenProfile(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onBackupData(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavFlights(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onExportCsv(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onExportPdf(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onRestoreData(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNewRecord(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onResetFilters(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onSignOut(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onRefreshTable(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onDeleteSelected(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavCertificates(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavTrainees(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onEditSelected(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onApplyFilters(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavInstructors(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onNavOverview(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onOpenSettings(ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onGlobalSearch(ActionEvent actionEvent) {
     }
 }
