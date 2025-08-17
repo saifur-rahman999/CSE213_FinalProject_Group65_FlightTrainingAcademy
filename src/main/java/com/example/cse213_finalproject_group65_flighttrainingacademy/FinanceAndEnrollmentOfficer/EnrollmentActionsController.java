@@ -1,18 +1,25 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer;
 
-
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class EnrollmentActionsController {
@@ -48,7 +55,7 @@ public class EnrollmentActionsController {
 
     @FXML
     private void onWithdraw() {
-        // Withdraw students with attendance missed < 12 (as requested)
+        // Withdraw students with attendance missed < 12
         List<Student> affected = data.stream()
                 .filter(s -> s.getAttendanceMissed() < 12)
                 .collect(Collectors.toList());
@@ -109,5 +116,28 @@ public class EnrollmentActionsController {
         a.setHeaderText(null);
         a.setContentText(msg);
         a.showAndWait();
+    }
+
+    // ---- Back button handler (wired from FXML: onAction="#backToDashboard") ----
+    @FXML
+    public void backToDashboard(ActionEvent e) {
+        try {
+            // If you have a FEODashBoard class in the same package:
+            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+
+            // If you DON'T have a FEODashBoard class, comment the line above
+            // and use the absolute resource path instead:
+            // URL url = EnrollmentActionsController.class.getResource(
+            //     "/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashBoard.fxml"
+            // );
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+            Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            st.setScene(new Scene(root));
+            st.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            info("Navigation", "Could not load FEODashBoard.fxml");
+        }
     }
 }

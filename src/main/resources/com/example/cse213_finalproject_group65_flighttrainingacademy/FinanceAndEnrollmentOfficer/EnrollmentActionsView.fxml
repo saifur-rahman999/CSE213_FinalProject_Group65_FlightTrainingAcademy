@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.EnrollmentActionsController">
 
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tab?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.EnrollmentActionsController">
     <children>
         <ButtonBar layoutX="309.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0">
             <buttons>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button mnemonicParsing="false" text="Button"/>
             </buttons>
         </ButtonBar>
-        <TabPane fx:id="sdf" layoutX="159.0" layoutY="159.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+
+        <TabPane fx:id="sdf"
+                 layoutX="159.0" layoutY="159.0"
+                 prefHeight="200.0" prefWidth="200.0"
+                 tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Untitled Tab 1">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0"
+                                    prefHeight="180.0" prefWidth="200.0"/>
                     </content>
                 </Tab>
                 <Tab text="Untitled Tab 2">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0"
+                                    prefHeight="180.0" prefWidth="200.0"/>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
+
+        <!-- Back button must be inside <children> and wired to a handler -->
+        <Button text="Back"
+                onAction="#backToDashboard"
+                AnchorPane.bottomAnchor="10.0"
+                AnchorPane.rightAnchor="10.0"/>
     </children>
-    <Button text="Back" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
-</children>
-        </AnchorPane>
+</AnchorPane>
