@@ -1,6 +1,5 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer;
 
-
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Invoice;
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.InvoiceBinStore;
 import javafx.fxml.FXML;
@@ -12,6 +11,16 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
+// Back navigation imports
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.util.Objects;
+
 public class RecordPaymentController {
 
     @FXML private TextField invoiceIdField;
@@ -21,7 +30,7 @@ public class RecordPaymentController {
 
     @FXML
     private void recordPayment() {
-        // ---- parse inputs ----
+        // parse inputs
         Long id = parseLong(invoiceIdField.getText(), "Invoice ID must be a whole number.");
         if (id == null) return;
 
@@ -32,7 +41,7 @@ public class RecordPaymentController {
             return;
         }
 
-        // ---- load list & find invoice ----
+        // load & find invoice
         List<Invoice> list = InvoiceBinStore.readAll();
         Optional<Invoice> hit = InvoiceBinStore.findById(list, id);
         if (hit.isEmpty()) {
@@ -47,10 +56,9 @@ public class RecordPaymentController {
             return;
         }
 
-        // ---- apply & persist ----
-        inv.setPaid(inv.getPaid() + amt);                // update using your existing setter
-        String status = (inv.getDue() <= 1e-6)           // compute status on the fly (no model change)
-                ? "Paid"
+        // apply & persist
+        inv.setPaid(inv.getPaid() + amt);
+        String status = (inv.getDue() <= 1e-6) ? "Paid"
                 : (inv.getPaid() <= 1e-6 ? "Unpaid" : "PartiallyPaid");
 
         try {
@@ -60,7 +68,7 @@ public class RecordPaymentController {
             return;
         }
 
-        // ---- OP: confirmation ----
+        // confirmation
         info("Payment recorded",
                 "Invoice #" + inv.getId() +
                         "\nPaid just now: " + money.format(amt) +
@@ -71,7 +79,23 @@ public class RecordPaymentController {
         amountField.clear();
     }
 
-    // --- helpers ---
+    // Back → FEODashBoard.fxml
+    @FXML
+    private void onBack(ActionEvent e) {
+        try {
+            // If you don't have FEODashBoard class, use RecordPaymentController.class.getResource("/.../FEODashBoard.fxml")
+            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+            Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+            Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            st.setScene(new Scene(root));
+            st.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            error("Navigation Error", "Could not load FEODashBoard.fxml");
+        }
+    }
+
+    // helpers
     private Long parseLong(String s, String err) {
         try { return Long.parseLong(s.trim()); }
         catch (Exception e) { error("Invalid input", err); return null; }

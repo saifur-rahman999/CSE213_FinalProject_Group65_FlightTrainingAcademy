@@ -1,8 +1,5 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model;
 
-
-import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Invoice;
-
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -10,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public final class InvoiceBinStore {
-    private static final Path PATH = Paths.get("data", "invoices.bin"); // fixed location
+    private static final Path PATH = Paths.get("data", "invoices.bin"); // fixed file location
 
     private InvoiceBinStore() {}
 
@@ -30,7 +27,7 @@ public final class InvoiceBinStore {
             Object obj = ois.readObject();
             if (obj instanceof List<?>) return (List<Invoice>) obj;
         } catch (EOFException | FileNotFoundException e) {
-            // empty or missing file -> return empty list
+            // empty or missing file -> treat as empty list
         } catch (Exception e) {
             e.printStackTrace();
         }

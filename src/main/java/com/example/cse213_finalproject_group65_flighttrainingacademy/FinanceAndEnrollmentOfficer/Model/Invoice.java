@@ -7,7 +7,7 @@ public class Invoice implements Serializable {
     private final long id;
     private final long applicantId;
     private final double amount;
-    private final double paid;
+    private double paid;                 // mutable so FEO-4 can update
     private final LocalDate issueDate;
 
     public Invoice(long id, long applicantId, double amount, double paid) {
@@ -22,5 +22,12 @@ public class Invoice implements Serializable {
     public long getApplicantId() { return applicantId; }
     public double getAmount() { return amount; }
     public double getPaid() { return paid; }
+    public void setPaid(double paid) { this.paid = paid; }
     public LocalDate getIssueDate() { return issueDate; }
+
+    /** Convenience for validation and display (never negative). */
+    public double getDue() {
+        double due = amount - paid;
+        return (due < 0) ? 0.0 : due;
+    }
 }
