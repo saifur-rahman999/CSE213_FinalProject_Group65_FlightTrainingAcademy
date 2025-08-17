@@ -2,14 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.DatePicker?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.NewApplicationController"
             prefWidth="820" prefHeight="520">
 
-    <Label text="New Application" layoutX="24" layoutY="20" style="-fx-font-size:18; -fx-font-weight:bold;"/>
+    <Label text="New Application"
+           layoutX="24" layoutY="20"
+           style="-fx-font-size:18; -fx-font-weight:bold;" />
 
     <Label text="Name" layoutX="24" layoutY="76"/>
     <TextField fx:id="nameField" layoutX="140" layoutY="72" prefWidth="260"/>
@@ -17,12 +18,15 @@
     <Label text="Email" layoutX="24" layoutY="120"/>
     <TextField fx:id="emailField" layoutX="140" layoutY="116" prefWidth="260"/>
 
-    <Label text="Intake Month" layoutX="24" layoutY="164"/>
+    <Label text="Intake Month"
+           layoutX="24" layoutY="164"
+           tooltip="Pick any date in your target month"/>
     <DatePicker fx:id="intakePicker" layoutX="140" layoutY="160"/>
 
     <Label text="Course" layoutX="24" layoutY="208"/>
-    <TextField fx:id="courseField" layoutX="140" layoutY="204" prefWidth="260"/>
+    <ComboBox fx:id="courseCombo" layoutX="140" layoutY="204" prefWidth="260"/>
 
-    <Button text="Create" layoutX="140" layoutY="260" onAction="#createApplication"/>
-    <Button text="Back" layoutX="24" layoutY="480" onAction="#backToDashboard"/>
+    <Button text="Submit" layoutX="140" layoutY="260" onAction="#onSubmit"/>
+    <Button text="Reset"  layoutX="220" layoutY="260" onAction="#onReset"/>
+    <Button text="Close"  layoutX="24"  layoutY="480" onAction="#onClose"/>
 </AnchorPane>

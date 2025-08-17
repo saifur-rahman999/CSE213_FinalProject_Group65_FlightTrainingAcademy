@@ -1,11 +1,13 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.util;
 
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public final class FileIO {
     private FileIO() {}
@@ -34,15 +36,20 @@ public final class FileIO {
         }
     }
 
+    /** Legacy helper: append a line; swallows exceptions. */
     public static void appendLine(String txtPath, String line) {
         try {
-            Files.writeString(Path.of(txtPath), line + System.lineSeparator(),
-                    StandardCharsets.UTF_8,
-                    Files.exists(Path.of(txtPath)) ? java.nio.file.StandardOpenOption.APPEND
-                            : java.nio.file.StandardOpenOption.CREATE);
+            appendLineThrow(txtPath, line);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /** NEW: Append a line, but THROW on error so the UI can show a proper alert. */
+    public static void appendLineThrow(String txtPath, String line) throws IOException {
+        Path p = Path.of(txtPath);
+        ensureParentDirs(p);
+        Files.writeString(p, line + System.lineSeparator(), StandardCharsets.UTF_8, CREATE, APPEND);
     }
 
     public static boolean fileHasLine(String txtPath, String needle) {
@@ -53,6 +60,13 @@ public final class FileIO {
                     .stream().anyMatch(l -> l.trim().equalsIgnoreCase(needle.trim()));
         } catch (IOException e) {
             return false;
+        }
+    }
+
+    private static void ensureParentDirs(Path p) throws IOException {
+        Path parent = p.toAbsolutePath().getParent();
+        if (parent != null && !Files.exists(parent)) {
+            Files.createDirectories(parent);
         }
     }
 }

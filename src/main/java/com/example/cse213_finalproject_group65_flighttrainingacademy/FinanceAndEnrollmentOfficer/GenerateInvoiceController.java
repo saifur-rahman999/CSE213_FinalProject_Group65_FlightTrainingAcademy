@@ -16,11 +16,21 @@ import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 
+// NEW imports for Back navigation
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.util.Objects;
+
 public class GenerateInvoiceController {
 
     @FXML private ComboBox<Applicant> applicantCombo;
     @FXML private TextField amountField;
     @FXML private Button btnGenerate;
+    @FXML private Button btnBack;          // <— NEW
     @FXML private Label hintLabel;
 
     // ---- Dummy data lives HERE ----
@@ -38,7 +48,7 @@ public class GenerateInvoiceController {
         applicantCombo.setButtonCell(new ListCell<>() {
             @Override protected void updateItem(Applicant a, boolean empty) {
                 super.updateItem(a, empty);
-                setText(empty || a == null ? "" : a.toString()); // uses Applicant.toString()
+                setText(empty || a == null ? "" : a.toString());
             }
         });
         applicantCombo.setCellFactory(cb -> new ListCell<>() {
@@ -94,6 +104,21 @@ public class GenerateInvoiceController {
             amountField.clear();
         } catch (IOException ex) {
             showError("File Error", ex.getMessage());
+        }
+    }
+
+    // NEW: Back button → FEODashBoard.fxml
+    @FXML
+    private void onBack(ActionEvent e) {
+        try {
+            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+            Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+            Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            st.setScene(new Scene(root));
+            st.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            showError("Navigation Error", "Could not load FEODashBoard.fxml");
         }
     }
 
