@@ -1,6 +1,5 @@
-package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer;
+package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model;
 
-import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Application;
 
 import java.io.BufferedReader;
 import java.io.IOException;

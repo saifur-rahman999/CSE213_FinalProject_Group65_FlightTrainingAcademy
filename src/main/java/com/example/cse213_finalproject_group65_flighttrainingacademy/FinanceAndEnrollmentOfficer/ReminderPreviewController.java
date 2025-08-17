@@ -2,22 +2,30 @@ package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAnd
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * FEO-8 (Dummy, single controller).
- * - "Load Overdue" shows students with due > 0 in a table.
- * - "Send Reminders" pops "Reminders sent to N recipient(s)." for selected rows
- *   (or all displayed rows if none selected).
- * - No file I/O; data is hard-coded here.
+ * FEO-8 — Reminder Lines Preview (Dummy, no file I/O)
+ * - Single action: "Generate Reminders"
+ * - Identifies overdue invoices (amount - paid > 0) from in-memory dummy data
+ * - Fills a table for visual confirmation + builds reminder lines into a TextArea
+ * - Shows an info toast: "Preview only."
+ * - NO file I/O
  */
 public class ReminderPreviewController {
 
@@ -28,7 +36,9 @@ public class ReminderPreviewController {
     @FXML private TableColumn<Row, Double>  colAmount;
     @FXML private TableColumn<Row, Double>  colPaid;
     @FXML private TableColumn<Row, Double>  colDue;
+
     @FXML private Label statusLabel;
+    @FXML private TextArea previewArea;
 
     private final ObservableList<Row> data = FXCollections.observableArrayList();
     private final DecimalFormat money = new DecimalFormat("#,##0.00");
@@ -60,12 +70,13 @@ public class ReminderPreviewController {
         colDue.setCellValueFactory(new PropertyValueFactory<>("due"));
 
         table.setItems(data);
-        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // enable multi-select
         statusLabel.setText("Ready");
+        previewArea.setText("");
     }
 
+    /** Single-click generation: find overdue, populate table and preview lines. */
     @FXML
-    private void onLoadOverdue() {
+    private void onGenerate() {
         Map<Integer, Student> stuById = STUDENTS.stream()
                 .collect(Collectors.toMap(s -> s.id, s -> s));
 
@@ -80,33 +91,42 @@ public class ReminderPreviewController {
             }
         }
 
-        double totalDue = data.stream().mapToDouble(Row::getDue).sum();
-        statusLabel.setText("Overdue: " + data.size() + " student(s), total due " + money.format(totalDue));
+        // Build the preview lines
+        if (data.isEmpty()) {
+            previewArea.setText("No overdue students.");
+            statusLabel.setText("No overdue students.");
+        } else {
+            String lines = data.stream()
+                    .map(r -> String.format(Locale.US,
+                            "%s <%s>: You have an outstanding balance of %s (Student #%d).",
+                            r.getName(), r.getEmail(), money.format(r.getDue()), r.getStudentId()))
+                    .collect(Collectors.joining("\n"));
+            previewArea.setText(lines);
+
+            double totalDue = data.stream().mapToDouble(Row::getDue).sum();
+            statusLabel.setText("Overdue: " + data.size() + " student(s), total due " + money.format(totalDue));
+        }
+
+        // Toast/info: Preview only
+        info("Reminders", "Preview only.");
     }
 
+    // ---- Back button ----
     @FXML
-    private void onSendReminders() {
-        List<Row> targets = table.getSelectionModel().getSelectedItems();
-        if (targets == null || targets.isEmpty()) {
-            targets = new ArrayList<>(data); // send to all displayed if nothing selected
+    private void backToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Finance & Enrollment Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            info("Navigation Error", "Unable to return to dashboard.");
         }
-
-        if (targets.isEmpty()) {
-            info("Reminders", "No overdue students to remind.");
-            statusLabel.setText("No recipients.");
-            return;
-        }
-
-        // Dummy behavior: just show popup
-        String lines = targets.stream()
-                .map(r -> r.getStudentId() + " — " + r.getName() + " <" + r.getEmail() + ">  Due: " + money.format(r.getDue()))
-                .collect(Collectors.joining("\n"));
-
-        info("Reminders sent",
-                "Reminders sent to " + targets.size() + " recipient(s):\n\n" + lines);
-
-        statusLabel.setText("Reminders sent to " + targets.size());
     }
+
 
     private void info(String title, String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -115,6 +135,12 @@ public class ReminderPreviewController {
         a.setContentText(msg);
         a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         a.showAndWait();
+    }
+
+    public void onLoadOverdue(ActionEvent actionEvent) {
+    }
+
+    public void onSendReminders(ActionEvent actionEvent) {
     }
 
     // ---------- Local dummy DTOs ----------
@@ -150,4 +176,6 @@ public class ReminderPreviewController {
         public double getPaid() { return paid; }
         public double getDue() { return due; }
     }
+
+
 }
