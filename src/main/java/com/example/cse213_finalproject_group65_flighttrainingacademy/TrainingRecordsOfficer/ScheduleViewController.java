@@ -6,9 +6,11 @@ import com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRec
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.*;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -26,37 +28,21 @@ public class ScheduleViewController {
     @FXML private TableColumn<ClassSession, String> colTrainee, colEquip, colRemarks;
     @FXML private TableColumn<ClassSession, Double> colDur;
     @FXML private Label summaryLabel;
-    @FXML private BarChart<String, Number> hoursByTraineeChart;
+    @FXML private javafx.scene.chart.BarChart<String, Number> hoursByTraineeChart;
     @FXML private PieChart sessionsByTypeChart;
+    @FXML private Button btnBack;
 
     private final ObservableList<ClassSession> viewData = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // table columns
-        colId.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colTrainee.setCellValueFactory(new PropertyValueFactory<>("traineeId"));
-        colEquip.setCellValueFactory(new PropertyValueFactory<>("aircraftOrDeviceId"));
-        colDur.setCellValueFactory(new PropertyValueFactory<>("durationHours"));
-        colRemarks.setCellValueFactory(new PropertyValueFactory<>("remarks"));
-
+        setupTableColumns();
         table.setItems(viewData);
 
-        // seed a couple rows if empty (for quick demo)
-        if (DummyStore.sessions.isEmpty()) {
-            DummyStore.sessions.add(new ClassSession(1, LocalDate.now().minusDays(5), SessionType.FLIGHT, "TP-001","AC-C172-01",1.3,"Circuit"));
-            DummyStore.sessions.add(new ClassSession(2, LocalDate.now().minusDays(3), SessionType.SIMULATOR,"TP-002","SIM-ATD-01",1.0,"IFR"));
-            DummyStore.sessions.add(new ClassSession(3, LocalDate.now().minusDays(1), SessionType.FLIGHT, "TP-001","AC-C172-01",1.2,"Nav"));
-            DummyStore.sessions.add(new ClassSession(4, LocalDate.now(),              SessionType.GROUND,  "TP-003","ROOM-A",      2.0,"Briefing"));
-        }
-
-        // filters
+        // Filters (Run will ignore dates; we keep selectors for UI completeness)
         typeCombo.setItems(FXCollections.observableArrayList("All", "FLIGHT", "SIMULATOR", "GROUND"));
         typeCombo.getSelectionModel().select("All");
 
-        // create list of trainees from sessions + All
         Set<String> trainees = DummyStore.sessions.stream()
                 .map(ClassSession::getTraineeId)
                 .collect(Collectors.toCollection(TreeSet::new));
@@ -66,20 +52,43 @@ public class ScheduleViewController {
         traineeCombo.setItems(FXCollections.observableArrayList(traineeOpts));
         traineeCombo.getSelectionModel().select("All");
 
-        // initial view
-        applyFilters();
+        // Start empty
+        viewData.clear();
+        updateSummary(viewData);
+        refreshCharts(viewData);
+    }
+
+    private void setupTableColumns() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colTrainee.setCellValueFactory(new PropertyValueFactory<>("traineeId"));
+        colEquip.setCellValueFactory(new PropertyValueFactory<>("aircraftOrDeviceId"));
+        colDur.setCellValueFactory(new PropertyValueFactory<>("durationHours"));
+        colRemarks.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+    }
+
+    // === Produce a fixed dummy list regardless of date pickers ===
+    private List<ClassSession> makeDummy() {
+        LocalDate today = LocalDate.now();
+        return Arrays.asList(
+                new ClassSession(101, today.minusDays(6), SessionType.FLIGHT,    "TP-001","AC-C172-01",1.3,"Circuits"),
+                new ClassSession(102, today.minusDays(5), SessionType.SIMULATOR, "TP-002","SIM-ATD-01",1.0,"IFR holds"),
+                new ClassSession(103, today.minusDays(4), SessionType.FLIGHT,    "TP-001","AC-C172-01",1.2,"Local nav"),
+                new ClassSession(104, today.minusDays(3), SessionType.GROUND,    "TP-003","ROOM-A",     2.0,"Preflight brief"),
+                new ClassSession(105, today.minusDays(2), SessionType.SIMULATOR, "TP-002","SIM-ATD-01",1.2,"ILS"),
+                new ClassSession(106, today.minusDays(1), SessionType.FLIGHT,    "TP-004","AC-DA40-02",1.5,"Crosswind"),
+                new ClassSession(107, today,              SessionType.FLIGHT,    "TP-003","AC-C172-02",1.1,"Pattern work")
+        );
     }
 
     @FXML
     private void onRun() {
-        // VL: if both dates provided, From ≤ To
-        LocalDate f = fromDate.getValue();
-        LocalDate t = toDate.getValue();
-        if (f != null && t != null && f.isAfter(t)) {
-            alert("From date must be ≤ To date.");
-            return;
-        }
-        applyFilters();
+        // Ignore date pickers: just load dummy data.
+        List<ClassSession> dummy = makeDummy();
+        viewData.setAll(dummy);
+        updateSummary(dummy);
+        refreshCharts(dummy);
     }
 
     @FXML
@@ -88,25 +97,9 @@ public class ScheduleViewController {
         toDate.setValue(null);
         typeCombo.getSelectionModel().select("All");
         traineeCombo.getSelectionModel().select("All");
-        applyFilters();
-    }
-
-    private void applyFilters() {
-        LocalDate f = fromDate.getValue();
-        LocalDate t = toDate.getValue();
-        String typeSel = typeCombo.getValue();
-        String traineeSel = traineeCombo.getValue();
-
-        List<ClassSession> filtered = DummyStore.sessions.stream()
-                .filter(s -> f == null || !s.getDate().isBefore(f))
-                .filter(s -> t == null || !s.getDate().isAfter(t))
-                .filter(s -> "All".equals(typeSel) || s.getType().name().equals(typeSel))
-                .filter(s -> "All".equals(traineeSel) || s.getTraineeId().equals(traineeSel))
-                .collect(Collectors.toList());
-
-        viewData.setAll(filtered);
-        updateSummary(filtered);
-        refreshCharts(filtered);
+        viewData.clear();
+        updateSummary(viewData);
+        refreshCharts(viewData);
     }
 
     private void updateSummary(List<ClassSession> list) {
@@ -124,7 +117,9 @@ public class ScheduleViewController {
         for (Map.Entry<String, Double> e : hoursByTrainee.entrySet()) {
             series.getData().add(new XYChart.Data<>(e.getKey(), e.getValue()));
         }
-        hoursByTraineeChart.getData().setAll(series);
+        // Avoid varargs-based setAll(...) to silence "unchecked generics array creation"
+        hoursByTraineeChart.getData().clear();
+        hoursByTraineeChart.getData().add(series);
 
         // Pie: sessions by type
         Map<SessionType, Long> countByType = list.stream()
@@ -136,7 +131,9 @@ public class ScheduleViewController {
         sessionsByTypeChart.setData(pie);
     }
 
-    private void alert(String msg) {
-        new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK).showAndWait();
+    @FXML
+    public void onBack() {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 }

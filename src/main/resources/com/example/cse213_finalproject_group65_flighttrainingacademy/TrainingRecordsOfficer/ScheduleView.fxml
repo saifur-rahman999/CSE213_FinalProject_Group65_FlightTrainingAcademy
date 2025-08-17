@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.ScheduleViewController"
-            prefWidth="900" prefHeight="560">
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="632.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.ScheduleViewController">
 
     <!-- FILTERS -->
-    <top>
-        <VBox spacing="8" BorderPane.alignment="CENTER">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+    <Label layoutX="18.0" layoutY="52.0" text="From" />
+    <DatePicker fx:id="fromDate" layoutX="56.0" layoutY="48.0" prefWidth="120" />
 
-            <HBox spacing="10">
-                <Label text="From"/>
-                <DatePicker fx:id="fromDate"/>
-                <Label text="To"/>
-                <DatePicker fx:id="toDate"/>
+    <Label layoutX="198.0" layoutY="52.0" text="To" />
+    <DatePicker fx:id="toDate" layoutX="226.0" layoutY="48.0" prefWidth="120" />
 
-                <Label text="Type"/>
-                <ComboBox fx:id="typeCombo" prefWidth="140"/>
+    <Label layoutX="368.0" layoutY="52.0" text="Type" />
+    <ComboBox fx:id="typeCombo" layoutX="406.0" layoutY="48.0" prefWidth="140" />
 
-                <Label text="Trainee"/>
-                <ComboBox fx:id="traineeCombo" prefWidth="180"/>
+    <Label layoutX="568.0" layoutY="52.0" text="Trainee" />
+    <ComboBox fx:id="traineeCombo" layoutX="626.0" layoutY="48.0" prefWidth="180" />
 
-                <Button text="Run" onAction="#onRun"/>
-                <Button text="Reset" onAction="#onReset"/>
-            </HBox>
+    <Button layoutX="846.0" layoutY="48.0" onAction="#onRun" prefWidth="60" text="Run" />
+    <Button layoutX="846.0" layoutY="86.0" onAction="#onReset" prefWidth="60" text="Reset" />
 
-            <Label fx:id="summaryLabel" text="0 sessions, 0.0 total hours"/>
-        </VBox>
-    </top>
+    <!-- BACK BUTTON (top-right corner) -->
+    <Button fx:id="btnBack" layoutX="848.0" layoutY="570.0" onAction="#onBack" prefWidth="60" text="Back" />
+
+    <!-- Summary Label -->
+    <Label fx:id="summaryLabel" layoutX="396.0" layoutY="79.0" text="0 sessions, 0.0 total hours" />
 
     <!-- TABLE -->
-    <center>
-        <TableView fx:id="table">
-            <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-                <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
-                <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
-                <TableColumn fx:id="colTrainee" text="Trainee" prefWidth="140"/>
-                <TableColumn fx:id="colEquip" text="Aircraft/Device" prefWidth="160"/>
-                <TableColumn fx:id="colDur" text="Hours" prefWidth="90"/>
-                <TableColumn fx:id="colRemarks" text="Remarks" prefWidth="240"/>
-            </columns>
-        </TableView>
-    </center>
+    <TableView fx:id="table" layoutX="51.0" layoutY="108.0" prefHeight="300" prefWidth="860">
+        <columns>
+            <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+            <TableColumn fx:id="colDate" prefWidth="100" text="Date" />
+            <TableColumn fx:id="colType" prefWidth="100" text="Type" />
+            <TableColumn fx:id="colTrainee" prefWidth="140" text="Trainee" />
+            <TableColumn fx:id="colEquip" prefWidth="160" text="Aircraft/Device" />
+            <TableColumn fx:id="colDur" prefWidth="90" text="Hours" />
+            <TableColumn fx:id="colRemarks" prefWidth="210" text="Remarks" />
+        </columns>
+    </TableView>
 
     <!-- CHARTS -->
-    <bottom>
-        <HBox spacing="10" BorderPane.alignment="CENTER">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <BarChart fx:id="hoursByTraineeChart">
-                <xAxis><CategoryAxis label="Trainee"/></xAxis>
-                <yAxis><NumberAxis label="Hours"/></yAxis>
-            </BarChart>
-            <PieChart fx:id="sessionsByTypeChart" prefWidth="360"/>
-        </HBox>
-    </bottom>
-</BorderPane>
+    <BarChart fx:id="hoursByTraineeChart" layoutX="18.0" layoutY="420.0" prefHeight="120" prefWidth="400">
+        <xAxis><CategoryAxis label="Trainee" /></xAxis>
+        <yAxis><NumberAxis label="Hours" /></yAxis>
+    </BarChart>
+
+    <PieChart fx:id="sessionsByTypeChart" layoutX="448.0" layoutY="420.0" prefHeight="120" prefWidth="430" />
+   <Label layoutX="331.0" layoutY="5.0" prefHeight="34.0" prefWidth="252.0" text="                           SCHEDULE">
+      <font>
+         <Font name="Bodoni MT Condensed" size="20.0" />
+      </font>
+   </Label>
+</AnchorPane>

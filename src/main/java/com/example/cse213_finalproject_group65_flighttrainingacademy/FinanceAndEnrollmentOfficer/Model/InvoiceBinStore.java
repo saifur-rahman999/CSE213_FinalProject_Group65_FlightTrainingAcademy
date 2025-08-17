@@ -11,11 +11,14 @@ public final class InvoiceBinStore {
 
     private InvoiceBinStore() {}
 
-    public static Path path() { return PATH; }
+    /** Absolute path to the backing file (useful for alerts). */
+    public static Path path() { return PATH.toAbsolutePath(); }
 
+    /** Read all invoices from data/invoices.bin. Returns empty list if file is missing/empty. */
     @SuppressWarnings("unchecked")
     public static List<Invoice> readAll() {
         try {
+            // If no file or zero bytes -> treat as empty list.
             if (Files.notExists(PATH) || Files.size(PATH) == 0) {
                 return new ArrayList<>();
             }
@@ -25,25 +28,34 @@ public final class InvoiceBinStore {
 
         try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(PATH))) {
             Object obj = ois.readObject();
-            if (obj instanceof List<?>) return (List<Invoice>) obj;
+            if (obj instanceof List<?>) {
+                return (List<Invoice>) obj;
+            }
         } catch (EOFException | FileNotFoundException e) {
             // empty or missing file -> treat as empty list
         } catch (Exception e) {
+            // Any deserialization problem -> start fresh instead of crashing
             e.printStackTrace();
         }
         return new ArrayList<>();
     }
 
+    /** Overwrite the file with the given list. Creates the data/ folder if needed. */
     public static void writeAll(List<Invoice> list) throws IOException {
-        if (PATH.getParent() != null) Files.createDirectories(PATH.getParent());
+        if (PATH.getParent() != null) {
+            Files.createDirectories(PATH.getParent());
+        }
         try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(PATH))) {
             oos.writeObject(list);
             oos.flush();
         }
     }
 
+    /** Utility: find an invoice by id in a list already loaded into memory. */
     public static Optional<Invoice> findById(List<Invoice> list, long id) {
-        for (Invoice inv : list) if (inv.getId() == id) return Optional.of(inv);
+        for (Invoice inv : list) {
+            if (inv.getId() == id) return Optional.of(inv);
+        }
         return Optional.empty();
     }
 }

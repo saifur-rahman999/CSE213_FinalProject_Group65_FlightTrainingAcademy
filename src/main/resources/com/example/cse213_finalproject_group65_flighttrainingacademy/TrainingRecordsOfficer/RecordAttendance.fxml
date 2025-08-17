@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
+<AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.TrainingRecordsOfficer.RecordAttendanceController"
             prefWidth="560" prefHeight="420">
 
-    <top>
-        <VBox spacing="6">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <Label text="Record Attendance"/>
-            <HBox spacing="20">
-                <Label fx:id="sessionInfoLabel" text="Session: -"/>
-                <Label fx:id="countsLabel" text="Present: 0 | Absent: 0"/>
-            </HBox>
-        </VBox>
-    </top>
+    <!-- Title -->
+    <Label text="Record Attendance"
+           layoutX="20" layoutY="15"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
-    <center>
-        <TableView fx:id="rosterTable">
-            <columns>
-                <TableColumn fx:id="colId" text="Trainee ID" prefWidth="140"/>
-                <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
-                <TableColumn fx:id="colPresent" text="Present?" prefWidth="100"/>
-            </columns>
-        </TableView>
-    </center>
+    <!-- Session + Counts -->
+    <HBox spacing="20" layoutX="20" layoutY="45">
+        <Label fx:id="sessionInfoLabel" text="Session: -"/>
+        <Label fx:id="countsLabel" text="Present: 0 | Absent: 0"/>
+    </HBox>
 
-    <bottom>
-        <HBox spacing="8" BorderPane.alignment="CENTER_RIGHT">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <Button text="Save" onAction="#onSave"/>
-            <Button text="Cancel" onAction="#onCancel"/>
-        </HBox>
-    </bottom>
-</BorderPane>
+    <!-- Table -->
+    <TableView fx:id="rosterTable" layoutX="20" layoutY="80"
+               prefWidth="520" prefHeight="260">
+        <columns>
+            <TableColumn fx:id="colId" text="Trainee ID" prefWidth="140"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="colPresent" text="Present?" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Buttons -->
+    <HBox spacing="8" layoutX="20" layoutY="360">
+        <Button text="Back" onAction="#onBack"/>
+        <Button text="Save" onAction="#onSave"/>
+        <Button text="Cancel" onAction="#onCancel"/>
+    </HBox>
+</AnchorPane>

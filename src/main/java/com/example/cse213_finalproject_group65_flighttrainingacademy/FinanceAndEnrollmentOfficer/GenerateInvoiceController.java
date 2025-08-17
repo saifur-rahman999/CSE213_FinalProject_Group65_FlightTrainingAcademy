@@ -2,38 +2,29 @@ package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAnd
 
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Applicant;
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.Invoice;
-import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.util.InvoiceBinStore;
+import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.InvoiceBinStore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Window;
+import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
-
-// NEW imports for Back navigation
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.net.URL;
 import java.util.Objects;
 
 public class GenerateInvoiceController {
 
     @FXML private ComboBox<Applicant> applicantCombo;
     @FXML private TextField amountField;
-    @FXML private Button btnGenerate;
-    @FXML private Button btnBack;          // <— NEW
-    @FXML private Label hintLabel;
 
-    // ---- Dummy data lives HERE ----
     private final ObservableList<Applicant> dummyApplicants = FXCollections.observableArrayList(
             new Applicant(1001, "Ayesha Karim", "ayesha@example.com"),
             new Applicant(1002, "Tanvir Ahmed", "tanvir@example.com"),
@@ -42,91 +33,55 @@ public class GenerateInvoiceController {
 
     @FXML
     private void initialize() {
-        applicantCombo.setItems(dummyApplicants);
-
-        // nice rendering
-        applicantCombo.setButtonCell(new ListCell<>() {
-            @Override protected void updateItem(Applicant a, boolean empty) {
-                super.updateItem(a, empty);
-                setText(empty || a == null ? "" : a.toString());
-            }
-        });
-        applicantCombo.setCellFactory(cb -> new ListCell<>() {
-            @Override protected void updateItem(Applicant a, boolean empty) {
-                super.updateItem(a, empty);
-                setText(empty || a == null ? "" : a.toString());
-            }
-        });
+        applicantCombo.setItems(dummyApplicants); // uses Applicant.toString() by default
     }
 
     @FXML
     private void onGenerate() {
-        Applicant selected = applicantCombo.getValue();
-        String amtText = amountField.getText() == null ? "" : amountField.getText().trim();
+        Applicant a = applicantCombo.getValue();
+        if (a == null) { alert("Select an applicant."); return; }
 
-        // VL
-        if (selected == null) { showError("Validation", "Please select an applicant."); return; }
         double amount;
-        try { amount = Double.parseDouble(amtText); }
-        catch (NumberFormatException nfe) { showError("Validation", "Amount must be a number > 0."); return; }
-        if (amount <= 0) { showError("Validation", "Amount must be greater than 0."); return; }
-
-        // FileChooser suggest invoices.bin
-        Window owner = ((Node) btnGenerate).getScene().getWindow();
-        File file = InvoiceBinStore.chooseBinFile(owner);
-        if (file == null) return; // cancelled
+        try {
+            amount = Double.parseDouble(amountField.getText().trim());
+            if (amount <= 0) throw new NumberFormatException();
+        } catch (Exception e) {
+            alert("Enter a valid amount > 0.");
+            return;
+        }
 
         try {
-            // Read list (deserialize; empty if none)
-            List<Invoice> invoices = InvoiceBinStore.readAll(file);
+            List<Invoice> list = InvoiceBinStore.readAll();
+            long nextId = list.stream().map(Invoice::getId).max(Comparator.naturalOrder()).orElse(0L) + 1;
+            Invoice inv = new Invoice(nextId, a.getId(), amount, 0.0);
+            list.add(inv);
+            InvoiceBinStore.writeAll(list);
 
-            // New id = max + 1
-            long nextId = invoices.stream().map(Invoice::getId).max(Comparator.naturalOrder()).orElse(0L) + 1;
-
-            // Append new invoice
-            Invoice inv = new Invoice(nextId, selected.getId(), amount, 0.0);
-            invoices.add(inv);
-
-            // Write back
-            InvoiceBinStore.writeAll(file, invoices);
-
-            // OP
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            Alert ok = new Alert(Alert.AlertType.INFORMATION);
-            ok.setTitle("Invoice Created");
-            ok.setHeaderText(null);
-            ok.setContentText("Invoice saved to:\n" + file.getAbsolutePath()
+            alert("Saved to: " + InvoiceBinStore.path()
                     + "\n\nID: " + inv.getId()
-                    + "\nApplicant: " + selected.getName() + " (#" + selected.getId() + ")"
+                    + "\nApplicant: " + a.getName() + " (#" + a.getId() + ")"
                     + "\nAmount: " + df.format(inv.getAmount()));
-            ok.showAndWait();
-
             amountField.clear();
         } catch (IOException ex) {
-            showError("File Error", ex.getMessage());
+            alert("File error: " + ex.getMessage());
         }
     }
 
-    // NEW: Back button → FEODashBoard.fxml
     @FXML
     private void onBack(ActionEvent e) {
         try {
-            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
-            Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(
+                    FEODashBoard.class.getResource("FEODashBoard.fxml")));
             Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
             st.setScene(new Scene(root));
             st.show();
         } catch (Exception ex) {
-            ex.printStackTrace();
-            showError("Navigation Error", "Could not load FEODashBoard.fxml");
+            alert("Cannot open FEODashBoard.fxml");
         }
     }
 
-    private void showError(String title, String msg) {
-        Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setTitle(title);
-        a.setHeaderText(null);
-        a.setContentText(msg);
-        a.showAndWait();
+    private void alert(String msg) {
+        new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK).showAndWait();
     }
 }
