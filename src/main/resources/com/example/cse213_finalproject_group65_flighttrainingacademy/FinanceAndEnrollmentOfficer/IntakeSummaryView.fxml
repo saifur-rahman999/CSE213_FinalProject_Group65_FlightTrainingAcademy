@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.IntakeSummaryController"
+            prefWidth="760" prefHeight="460">
+
+    <!-- Top bar -->
+    <Button text="⟵ Back"
+            layoutX="12" layoutY="12"
+            onAction="#backToDashboard"/>
+    <Label text="Intake Summary (Dummy, no file I/O)"
+           layoutX="86" layoutY="14"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <!-- Filters -->
+    <Label text="Intake Month:"
+           layoutX="20" layoutY="60"/>
+    <DatePicker fx:id="intakePicker"
+                layoutX="112" layoutY="56"
+                prefWidth="180"/>
+    <Button text="View"
+            layoutX="304" layoutY="56"
+            onAction="#onView"/>
+
+    <!-- KPI strip -->
+    <TitledPane text="KPIs" collapsible="false"
+                layoutX="20" layoutY="96"
+                prefWidth="720" prefHeight="90">
+        <content>
+            <GridPane hgap="18" vgap="6" style="-fx-padding: 10;">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20"/>
+                </columnConstraints>
+
+                <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="lblTotal" text="0" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+                <Label text="Active:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label fx:id="lblActive" text="0" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Pending:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <Label fx:id="lblPending" text="0" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+                <Label text="Deferred:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <Label fx:id="lblDeferred" text="0" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                <Label text="Withdrawn:" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                <Label fx:id="lblWithdrawn" text="0" style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+            </GridPane>
+        </content>
+    </TitledPane>
+
+    <!-- Table -->
+    <TableView fx:id="table"
+               layoutX="20" layoutY="196"
+               prefWidth="720" prefHeight="240">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="90"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="250"/>
+            <TableColumn fx:id="colIntake" text="Intake (YYYY-MM)" prefWidth="140"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="180"/>
+        </columns>
+    </TableView>
+
+</AnchorPane>
