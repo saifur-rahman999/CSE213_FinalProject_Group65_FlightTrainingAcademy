@@ -14,23 +14,23 @@
 
     <!-- Row 1 -->
     <Button text="New Application" layoutX="24" layoutY="80" prefWidth="200" prefHeight="48"
-            onAction="#openNewApplication"/>
+            onAction="#newApplicationButtonOA"/>
     <Button text="Search Applicants" layoutX="244" layoutY="80" prefWidth="200" prefHeight="48"
-            onAction="#openSearchApplicants"/>
+            onAction="#searchApplicantsButtonOA"/>
     <Button text="Generate Invoice" layoutX="464" layoutY="80" prefWidth="200" prefHeight="48"
-            onAction="#openGenerateInvoice"/>
+            onAction="#generateInvoiceButtonOA"/>
     <Button text="Record Payment" layoutX="684" layoutY="80" prefWidth="200" prefHeight="48"
-            onAction="#openRecordPayment"/>
+            onAction="#recordPaymentButtonOA"/>
 
     <!-- Row 2 -->
     <Button text="Track Outstanding" layoutX="24" layoutY="148" prefWidth="200" prefHeight="48"
-            onAction="#openTrackOutstanding"/>
+            onAction="#trackOutstandingButtonOA"/>
     <Button text="Enrollment Actions" layoutX="244" layoutY="148" prefWidth="200" prefHeight="48"
-            onAction="#openEnrollmentActions"/>
+            onAction="#enrollmentActionsButtonOA"/>
     <Button text="Intake Summary" layoutX="464" layoutY="148" prefWidth="200" prefHeight="48"
-            onAction="#openIntakeSummary"/>
+            onAction="#intakeSummaryButtonOA"/>
     <Button text="Reminder Preview" layoutX="684" layoutY="148" prefWidth="200" prefHeight="48"
-            onAction="#openReminderPreview"/>
+            onAction="#reminderPreviewButtonOA"/>
 
     <!-- Sign Out -->
     <Button text="Sign Out" layoutX="780" layoutY="520" prefWidth="100" onAction="#signoutButtonOnAction"/>
