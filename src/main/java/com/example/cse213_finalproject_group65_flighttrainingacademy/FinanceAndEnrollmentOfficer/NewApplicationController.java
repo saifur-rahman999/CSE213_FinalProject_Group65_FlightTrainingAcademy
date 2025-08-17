@@ -1,14 +1,21 @@
 package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer;
 
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.Model.ApplicationStatus;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path; // IMPORTANT
+import java.util.Objects;
 
 public class NewApplicationController {
 
@@ -88,4 +95,16 @@ public class NewApplicationController {
         a.setContentText(msg);
         a.showAndWait();
     }
+
+    public void createApplication(ActionEvent actionEvent) {
+    }
+
+    public void backToDashboard(ActionEvent e, String fxml){ try{
+        URL url = FEODashBoard.class.getResource(fxml);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+        Stage st = (Stage)((Node)e.getSource()).getScene().getWindow();
+        st.setScene(new Scene(root)); st.show();
+    }catch(Exception ex){ ex.printStackTrace(); }}
+
+    public void backToDashboard(ActionEvent e){ backToDashboard(e, "FEODashBoard.fxml"); }
 }

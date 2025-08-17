@@ -92,7 +92,7 @@ public class LoginController
 
             else if (userType.equals("Finance and Enrollment Officer")) {
                 if (id.equals("0003") && password.equals("feo")) {
-                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashboardController.fxml");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashBoard.fxml");
                     //FinanceAndEnrollmentOfficer.FEODashboardController
                 }
                 else {
