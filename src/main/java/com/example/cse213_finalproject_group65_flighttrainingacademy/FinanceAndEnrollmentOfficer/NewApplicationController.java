@@ -2,14 +2,23 @@ package com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAnd
 
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.util.FileIO;
 import com.example.cse213_finalproject_group65_flighttrainingacademy.FinanceAndEnrollmentOfficer.util.FilePaths;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
+import static jdk.internal.org.jline.utils.Log.error;
 
 public class NewApplicationController {
 
@@ -94,9 +103,17 @@ public class NewApplicationController {
     }
 
     @FXML
-    private void onClose() {
-        Stage stage = (Stage) nameField.getScene().getWindow();
-        stage.close();
+    private void onBack(ActionEvent e) {
+        try {
+            URL url = FEODashBoard.class.getResource("FEODashboard.fxml");
+            Parent root = FXMLLoader.load(Objects.requireNonNull(url));
+            Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            st.setScene(new Scene(root));
+            st.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            error("Navigation Error", "Could not load FEODashBoard.fxml");
+        }
     }
 
     private static String safeTrim(String s) {

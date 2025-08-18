@@ -92,7 +92,7 @@ public class LoginController
 
             else if (userType.equals("Finance and Enrollment Officer")) {
                 if (id.equals("0003") && password.equals("feo")) {
-                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashBoard.fxml");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/FinanceAndEnrollmentOfficer/FEODashboard.fxml");
                     //FinanceAndEnrollmentOfficer.FEODashboardController
                 }
                 else {
@@ -138,7 +138,7 @@ public class LoginController
 
             else if (userType.equals("Training Records Officer")) {
                 if (id.equals("0008") && password.equals("tro")) {
-                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/TrainingRecordsOfficer/TRODashBoard.fxml");
+                    goTo("/com/example/cse213_finalproject_group65_flighttrainingacademy/TrainingRecordsOfficer/TRODashboard.fxml");
                     //TrainingRecordsOfficer.TRODashBoard
                 }
                 else {

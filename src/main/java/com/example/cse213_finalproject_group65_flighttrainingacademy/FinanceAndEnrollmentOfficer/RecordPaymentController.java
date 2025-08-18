@@ -84,7 +84,7 @@ public class RecordPaymentController {
     private void onBack(ActionEvent e) {
         try {
             // If you don't have FEODashBoard class, use RecordPaymentController.class.getResource("/.../FEODashBoard.fxml")
-            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+            URL url = FEODashBoard.class.getResource("FEODashboard.fxml");
             Parent root = FXMLLoader.load(Objects.requireNonNull(url));
             Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
             st.setScene(new Scene(root));

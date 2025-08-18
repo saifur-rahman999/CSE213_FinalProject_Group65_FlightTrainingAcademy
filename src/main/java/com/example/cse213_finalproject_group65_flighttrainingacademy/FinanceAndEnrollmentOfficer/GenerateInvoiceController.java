@@ -72,7 +72,7 @@ public class GenerateInvoiceController {
     private void onBack(ActionEvent e) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(
-                    FEODashBoard.class.getResource("FEODashBoard.fxml")));
+                    FEODashBoard.class.getResource("FEODashboard.fxml")));
             Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
             st.setScene(new Scene(root));
             st.show();

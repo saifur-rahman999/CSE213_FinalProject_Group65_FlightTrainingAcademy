@@ -127,7 +127,7 @@ public class AddSessionController {
     public void onBack(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    HelloApplication.class.getResource("TrainingRecordsOfficer/TRODashBoard.fxml")
+                    HelloApplication.class.getResource("TrainingRecordsOfficer/TRODashboard.fxml")
             );
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

@@ -123,7 +123,7 @@ public class EnrollmentActionsController {
     public void backToDashboard(ActionEvent e) {
         try {
             // If you have a FEODashBoard class in the same package:
-            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+            URL url = FEODashBoard.class.getResource("FEODashboard.fxml");
 
             // If you DON'T have a FEODashBoard class, comment the line above
             // and use the absolute resource path instead:

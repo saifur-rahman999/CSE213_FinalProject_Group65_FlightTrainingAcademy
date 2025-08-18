@@ -84,7 +84,7 @@ public class IntakeSummaryController {
     @FXML
     private void backToDashboard(ActionEvent e) {
         try {
-            URL url = FEODashBoard.class.getResource("FEODashBoard.fxml");
+            URL url = FEODashBoard.class.getResource("FEODashboard.fxml");
             Parent root = FXMLLoader.load(Objects.requireNonNull(url));
             Stage st = (Stage) ((Node) e.getSource()).getScene().getWindow();
             st.setScene(new Scene(root));
